@@ -24,25 +24,41 @@ namespace Mean.Language
 		public class ID
 		{
 			/// <summary>
+			/// The unique identifier for terminal NEW_LINE
+			/// </summary>
+			public const int TerminalNewLine = 0x0003;
+			/// <summary>
 			/// The unique identifier for terminal WHITE_SPACE
 			/// </summary>
-			public const int TerminalWhiteSpace = 0x0003;
+			public const int TerminalWhiteSpace = 0x0004;
 			/// <summary>
-			/// The unique identifier for terminal SEPARATOR
+			/// The unique identifier for terminal COMMENT_LINE
 			/// </summary>
-			public const int TerminalSeparator = 0x0004;
+			public const int TerminalCommentLine = 0x0005;
+			/// <summary>
+			/// The unique identifier for terminal COMMENT_BLOCK
+			/// </summary>
+			public const int TerminalCommentBlock = 0x0006;
+			/// <summary>
+			/// The unique identifier for terminal IDENTIFIER
+			/// </summary>
+			public const int TerminalIdentifier = 0x0007;
 			/// <summary>
 			/// The unique identifier for terminal INTEGER
 			/// </summary>
-			public const int TerminalInteger = 0x0005;
+			public const int TerminalInteger = 0x0008;
 			/// <summary>
 			/// The unique identifier for terminal REAL
 			/// </summary>
-			public const int TerminalReal = 0x0006;
+			public const int TerminalReal = 0x0009;
 			/// <summary>
 			/// The unique identifier for terminal NUMBER
 			/// </summary>
-			public const int TerminalNumber = 0x0007;
+			public const int TerminalNumber = 0x000A;
+			/// <summary>
+			/// The unique identifier for terminal SEPARATOR
+			/// </summary>
+			public const int TerminalSeparator = 0x000B;
 		}
 		/// <summary>
 		/// Contains the constant IDs for the contexts for this lexer
@@ -64,26 +80,30 @@ namespace Mean.Language
 		private static readonly Symbol[] terminals = {
 			new Symbol(0x0001, "ε"),
 			new Symbol(0x0002, "$"),
-			new Symbol(0x0003, "WHITE_SPACE"),
-			new Symbol(0x0004, "SEPARATOR"),
-			new Symbol(0x0005, "INTEGER"),
-			new Symbol(0x0006, "REAL"),
-			new Symbol(0x0007, "NUMBER"),
-			new Symbol(0x000C, "("),
-			new Symbol(0x000D, ")"),
-			new Symbol(0x000E, "*"),
-			new Symbol(0x0010, "/"),
-			new Symbol(0x0011, "+"),
-			new Symbol(0x0012, "-") };
+			new Symbol(0x0003, "NEW_LINE"),
+			new Symbol(0x0004, "WHITE_SPACE"),
+			new Symbol(0x0005, "COMMENT_LINE"),
+			new Symbol(0x0006, "COMMENT_BLOCK"),
+			new Symbol(0x0007, "IDENTIFIER"),
+			new Symbol(0x0008, "INTEGER"),
+			new Symbol(0x0009, "REAL"),
+			new Symbol(0x000A, "NUMBER"),
+			new Symbol(0x000B, "SEPARATOR"),
+			new Symbol(0x0010, "("),
+			new Symbol(0x0011, ")"),
+			new Symbol(0x0012, "*"),
+			new Symbol(0x0013, "/"),
+			new Symbol(0x0014, "+"),
+			new Symbol(0x0015, "-") };
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>
 		/// <param name="input">The lexer's input</param>
-		public MeanLexer(string input) : base(commonAutomaton, terminals, 0x0004, input) {}
+		public MeanLexer(string input) : base(commonAutomaton, terminals, 0x000B, input) {}
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>
 		/// <param name="input">The lexer's input</param>
-		public MeanLexer(TextReader input) : base(commonAutomaton, terminals, 0x0004, input) {}
+		public MeanLexer(TextReader input) : base(commonAutomaton, terminals, 0x000B, input) {}
 	}
 }

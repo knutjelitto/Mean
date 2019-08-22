@@ -23,21 +23,21 @@ namespace Mean.Language
 		public class ID
 		{
 			/// <summary>
-			/// The unique identifier for variable exp_atom
+			/// The unique identifier for variable primary_expression
 			/// </summary>
-			public const int VariableExpAtom = 0x0008;
+			public const int VariablePrimaryExpression = 0x000C;
 			/// <summary>
 			/// The unique identifier for variable exp_factor
 			/// </summary>
-			public const int VariableExpFactor = 0x0009;
+			public const int VariableExpFactor = 0x000D;
 			/// <summary>
 			/// The unique identifier for variable exp_term
 			/// </summary>
-			public const int VariableExpTerm = 0x000A;
+			public const int VariableExpTerm = 0x000E;
 			/// <summary>
-			/// The unique identifier for variable exp
+			/// The unique identifier for variable expression
 			/// </summary>
-			public const int VariableExp = 0x000B;
+			public const int VariableExpression = 0x000F;
 		}
 		/// <summary>
 		/// The collection of variables matched by this parser
@@ -47,11 +47,11 @@ namespace Mean.Language
 		/// so that variable indices in the automaton can be used to retrieve the variables in this table
 		/// </remarks>
 		private static readonly Symbol[] variables = {
-			new Symbol(0x0008, "exp_atom"), 
-			new Symbol(0x0009, "exp_factor"), 
-			new Symbol(0x000A, "exp_term"), 
-			new Symbol(0x000B, "exp"), 
-			new Symbol(0x0013, "__VAxiom") };
+			new Symbol(0x000C, "primary_expression"), 
+			new Symbol(0x000D, "exp_factor"), 
+			new Symbol(0x000E, "exp_term"), 
+			new Symbol(0x000F, "expression"), 
+			new Symbol(0x0016, "__VAxiom") };
 		/// <summary>
 		/// The collection of virtuals matched by this parser
 		/// </summary>
@@ -62,74 +62,29 @@ namespace Mean.Language
 		private static readonly Symbol[] virtuals = {
  };
 		/// <summary>
-		/// Represents a set of semantic actions in this parser
-		/// </summary>
-		public class Actions
-		{
-			/// <summary>
-			/// The OnMul semantic action
-			/// </summary>
-			public virtual void OnMul(Symbol head, SemanticBody body) {}
-
-		}
-		/// <summary>
-		/// Represents a set of empty semantic actions (do nothing)
-		/// </summary>
-		private static readonly Actions noActions = new Actions();
-		/// <summary>
-		/// Gets the set of semantic actions in the form a table consistent with the automaton
-		/// </summary>
-		/// <param name="input">A set of semantic actions</param>
-		/// <returns>A table of semantic actions</returns>
-		private static SemanticAction[] GetUserActions(Actions input)
-		{
-			SemanticAction[] result = new SemanticAction[1];
-			result[0] = new SemanticAction(input.OnMul);
-			return result;
-		}
-		/// <summary>
-		/// Gets the set of semantic actions in the form a table consistent with the automaton
-		/// </summary>
-		/// <param name="input">A set of semantic actions</param>
-		/// <returns>A table of semantic actions</returns>
-		private static SemanticAction[] GetUserActions(Dictionary<string, SemanticAction> input)
-		{
-			SemanticAction[] result = new SemanticAction[1];
-			result[0] = input["OnMul"];
-			return result;
-		}
-		/// <summary>
 		/// Initializes a new instance of the parser
 		/// </summary>
 		/// <param name="lexer">The input lexer</param>
-		public MeanParser(MeanLexer lexer) : base (commonAutomaton, variables, virtuals, GetUserActions(noActions), lexer) { }
-		/// <summary>
-		/// Initializes a new instance of the parser
-		/// </summary>
-		/// <param name="lexer">The input lexer</param>
-		/// <param name="actions">The set of semantic actions</param>
-		public MeanParser(MeanLexer lexer, Actions actions) : base (commonAutomaton, variables, virtuals, GetUserActions(actions), lexer) { }
-		/// <summary>
-		/// Initializes a new instance of the parser
-		/// </summary>
-		/// <param name="lexer">The input lexer</param>
-		/// <param name="actions">The set of semantic actions</param>
-		public MeanParser(MeanLexer lexer, Dictionary<string, SemanticAction> actions) : base (commonAutomaton, variables, virtuals, GetUserActions(actions), lexer) { }
+		public MeanParser(MeanLexer lexer) : base (commonAutomaton, variables, virtuals, null, lexer) { }
 
 		/// <summary>
 		/// Visitor interface
 		/// </summary>
 		public class Visitor
 		{
+			public virtual void OnTerminalNewLine(ASTNode node) {}
 			public virtual void OnTerminalWhiteSpace(ASTNode node) {}
-			public virtual void OnTerminalSeparator(ASTNode node) {}
+			public virtual void OnTerminalCommentLine(ASTNode node) {}
+			public virtual void OnTerminalCommentBlock(ASTNode node) {}
+			public virtual void OnTerminalIdentifier(ASTNode node) {}
 			public virtual void OnTerminalInteger(ASTNode node) {}
 			public virtual void OnTerminalReal(ASTNode node) {}
 			public virtual void OnTerminalNumber(ASTNode node) {}
-			public virtual void OnVariableExpAtom(ASTNode node) {}
+			public virtual void OnTerminalSeparator(ASTNode node) {}
+			public virtual void OnVariablePrimaryExpression(ASTNode node) {}
 			public virtual void OnVariableExpFactor(ASTNode node) {}
 			public virtual void OnVariableExpTerm(ASTNode node) {}
-			public virtual void OnVariableExp(ASTNode node) {}
+			public virtual void OnVariableExpression(ASTNode node) {}
 		}
 
 		/// <summary>
@@ -149,15 +104,19 @@ namespace Mean.Language
 				VisitASTNode(node.Children[i], visitor);
 			switch(node.Symbol.ID)
 			{
-				case 0x0003: visitor.OnTerminalWhiteSpace(node); break;
-				case 0x0004: visitor.OnTerminalSeparator(node); break;
-				case 0x0005: visitor.OnTerminalInteger(node); break;
-				case 0x0006: visitor.OnTerminalReal(node); break;
-				case 0x0007: visitor.OnTerminalNumber(node); break;
-				case 0x0008: visitor.OnVariableExpAtom(node); break;
-				case 0x0009: visitor.OnVariableExpFactor(node); break;
-				case 0x000A: visitor.OnVariableExpTerm(node); break;
-				case 0x000B: visitor.OnVariableExp(node); break;
+				case 0x0003: visitor.OnTerminalNewLine(node); break;
+				case 0x0004: visitor.OnTerminalWhiteSpace(node); break;
+				case 0x0005: visitor.OnTerminalCommentLine(node); break;
+				case 0x0006: visitor.OnTerminalCommentBlock(node); break;
+				case 0x0007: visitor.OnTerminalIdentifier(node); break;
+				case 0x0008: visitor.OnTerminalInteger(node); break;
+				case 0x0009: visitor.OnTerminalReal(node); break;
+				case 0x000A: visitor.OnTerminalNumber(node); break;
+				case 0x000B: visitor.OnTerminalSeparator(node); break;
+				case 0x000C: visitor.OnVariablePrimaryExpression(node); break;
+				case 0x000D: visitor.OnVariableExpFactor(node); break;
+				case 0x000E: visitor.OnVariableExpTerm(node); break;
+				case 0x000F: visitor.OnVariableExpression(node); break;
 			}
 		}
 	}
