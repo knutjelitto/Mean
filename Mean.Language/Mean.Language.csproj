@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hime.SDK" Version="3.4.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="*.bin" />
+  </ItemGroup>
+
+  <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(ProjectDir)Mean.Grammar" Outputs="$(ProjectDir)MeanParser.cs">
+    <Exec Command="cd $(ProjectDir)&#xD;&#xA;..\hime-3.4.0\net461\himecc.exe Mean.Grammar&#xD;&#xA;" />
+  </Target>
+
+</Project>

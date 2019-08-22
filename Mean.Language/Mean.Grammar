@@ -1,0 +1,49 @@
+﻿grammar Mean
+{
+    options
+    {
+        Axiom       = "exp"; // the top variable for this grammar
+        Separator   = "SEPARATOR"; // the terminal that represent white space
+        
+        CompilationMode = "Source";
+        ParserType = "LR";
+        //ParserType = "RNGLR";
+        Runtime = "Net";
+        Namespace = "Mean.Language";
+        AccessModifier = "Internal";
+    }
+    
+    terminals
+    {
+        WHITE_SPACE -> U+0020 | U+0009 | U+000B | U+000C ;
+        SEPARATOR   -> WHITE_SPACE+;
+
+        INTEGER     -> [1-9] [0-9]* | '0' ;
+        REAL        -> INTEGER? '.' [0-9]+  (('e' | 'E') ('+' | '-')? INTEGER)?
+                    |  INTEGER ('e' | 'E') ('+' | '-')? INTEGER ;
+        NUMBER      -> INTEGER | REAL ;
+    }
+  
+    rules
+    {
+        exp_atom
+            -> NUMBER^
+            | '('! exp^ ')'!
+            ;
+
+        exp_factor
+            -> exp_atom^
+            |  exp_factor '*'^ exp_atom @OnMul
+            |  exp_factor '/'^  exp_atom
+            ;
+
+        exp_term
+            -> exp_factor^
+            |  exp_term '+'^ exp_factor
+            |  exp_term '-'^ exp_factor
+            ;
+
+        exp -> exp_term^
+            ; 
+    }
+}
