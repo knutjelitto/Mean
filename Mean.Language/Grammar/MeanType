@@ -1,0 +1,11 @@
+﻿grammar MeanType : MeanIdentifier
+{
+    options {}
+    
+    terminals {}
+  
+    rules
+    {
+        type -> IDENTIFIER;
+    }
+}

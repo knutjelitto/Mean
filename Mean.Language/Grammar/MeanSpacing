@@ -10,7 +10,7 @@
             |  U+000D U+000A    /* CR LF */
             |  U+0085           // Next line character
             |  U+2028           // Line separator character
-            |  U+2029           //^Paragraph separator character
+            |  U+2029           // Paragraph separator character
             ;
 
         WHITE_SPACE

@@ -7,7 +7,7 @@ using System.IO;
 using Hime.Redist;
 using Hime.Redist.Lexer;
 
-namespace Mean.Language
+namespace Mean.Language.Generated
 {
 	/// <summary>
 	/// Represents a lexer
@@ -46,23 +46,19 @@ namespace Mean.Language
 			/// <summary>
 			/// The unique identifier for terminal IDENTIFIER
 			/// </summary>
-			public const int TerminalIdentifier = 0x0008;
+			public const int TerminalIdentifier = 0x0014;
 			/// <summary>
-			/// The unique identifier for terminal INTEGER
+			/// The unique identifier for terminal INTEGER_LITERAL
 			/// </summary>
-			public const int TerminalInteger = 0x0009;
+			public const int TerminalIntegerLiteral = 0x0015;
 			/// <summary>
-			/// The unique identifier for terminal REAL
+			/// The unique identifier for terminal FLOAT_LITERAL
 			/// </summary>
-			public const int TerminalReal = 0x000A;
-			/// <summary>
-			/// The unique identifier for terminal NUMBER
-			/// </summary>
-			public const int TerminalNumber = 0x000B;
+			public const int TerminalFloatLiteral = 0x0016;
 			/// <summary>
 			/// The unique identifier for terminal BOOL_LITERAL
 			/// </summary>
-			public const int TerminalBoolLiteral = 0x000C;
+			public const int TerminalBoolLiteral = 0x0017;
 		}
 		/// <summary>
 		/// Contains the constant IDs for the contexts for this lexer
@@ -89,19 +85,39 @@ namespace Mean.Language
 			new Symbol(0x0005, "COMMENT_LINE"),
 			new Symbol(0x0006, "COMMENT_BLOCK"),
 			new Symbol(0x0007, "SEPARATOR"),
-			new Symbol(0x0008, "IDENTIFIER"),
-			new Symbol(0x0009, "INTEGER"),
-			new Symbol(0x000A, "REAL"),
-			new Symbol(0x000B, "NUMBER"),
-			new Symbol(0x000C, "BOOL_LITERAL"),
-			new Symbol(0x000D, "true"),
-			new Symbol(0x000E, "false"),
-			new Symbol(0x0016, "("),
-			new Symbol(0x0017, ")"),
-			new Symbol(0x0018, "*"),
-			new Symbol(0x0019, "/"),
-			new Symbol(0x001A, "+"),
-			new Symbol(0x001B, "-") };
+			new Symbol(0x0014, "IDENTIFIER"),
+			new Symbol(0x0015, "INTEGER_LITERAL"),
+			new Symbol(0x0016, "FLOAT_LITERAL"),
+			new Symbol(0x0017, "BOOL_LITERAL"),
+			new Symbol(0x0018, "<"),
+			new Symbol(0x0019, ","),
+			new Symbol(0x001A, ">"),
+			new Symbol(0x001B, "="),
+			new Symbol(0x001C, "("),
+			new Symbol(0x001D, ")"),
+			new Symbol(0x001E, "["),
+			new Symbol(0x001F, "]"),
+			new Symbol(0x0020, "."),
+			new Symbol(0x0021, "-"),
+			new Symbol(0x0022, "!"),
+			new Symbol(0x0023, "*"),
+			new Symbol(0x0024, "/"),
+			new Symbol(0x0025, "%"),
+			new Symbol(0x0026, "mod"),
+			new Symbol(0x0027, "+"),
+			new Symbol(0x0028, "shl"),
+			new Symbol(0x0029, "shr"),
+			new Symbol(0x002A, "=="),
+			new Symbol(0x002B, "!="),
+			new Symbol(0x002C, "<="),
+			new Symbol(0x002D, ">="),
+			new Symbol(0x002E, "&"),
+			new Symbol(0x002F, "^"),
+			new Symbol(0x0030, "|"),
+			new Symbol(0x0031, "&&"),
+			new Symbol(0x0032, "||"),
+			new Symbol(0x0033, "{"),
+			new Symbol(0x0034, "}") };
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>

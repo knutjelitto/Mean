@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Hime.Redist;
+using Mean.Language.Generated;
 
 namespace Mean.Language
 {
@@ -22,11 +24,33 @@ namespace Mean.Language
             else
             {
 
-                Print(result.Root, new bool[] { });
+                PrintTree(result.Root, new bool[] { });
+                Console.WriteLine(MakeLisp(result.Root));
             }
         }
 
-        private static void Print(ASTNode node, bool[] crossings)
+        public static void Check(string source)
+        {
+            var lexer = new MeanLexer(source);
+            var parser = new MeanParser(lexer);
+
+            var result = parser.Parse();
+
+            if (!result.IsSuccess)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine($"{error}");
+                }
+            }
+            else
+            {
+
+                Console.WriteLine(MakeLisp(result.Root));
+            }
+        }
+
+        private static void PrintTree(ASTNode node, bool[] crossings)
         {
             for (var i = 0; i < crossings.Length - 1; i++)
             {
@@ -43,8 +67,23 @@ namespace Mean.Language
                 var childCrossings = new bool[crossings.Length + 1];
                 Array.Copy(crossings, childCrossings, crossings.Length);
                 childCrossings[childCrossings.Length - 1] = (i < node.Children.Count - 1);
-                Print(node.Children[i], childCrossings);
+                PrintTree(node.Children[i], childCrossings);
             }
+        }
+
+        private static string MakeLisp(ASTNode node)
+        {
+            if (node.SymbolType == SymbolType.Terminal)
+            {
+                return node.Value;
+            }
+            if (node.Children.Count == 1 && node.Children[0].SymbolType == SymbolType.Terminal)
+            {
+                return node.Children[0].Value;
+            }
+
+            var children = string.Join(" ", node.Children.Select(MakeLisp));
+            return $"({node.Symbol} {children})";
         }
     }
 }

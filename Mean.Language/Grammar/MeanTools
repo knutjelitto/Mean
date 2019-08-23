@@ -1,0 +1,19 @@
+﻿grammar MeanTools
+{
+    options {}
+    
+    terminals {}
+  
+    rules
+    {
+        sloppyList<item, separator>
+            ->  item (separator! item)* (separator?)!
+            |
+            ;
+
+        list<item, separator>
+            ->  (item (separator! item)*)^
+            |
+            ;
+    }
+}

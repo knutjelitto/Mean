@@ -1,0 +1,135 @@
+Name: Mean
+Options:
+	Axiom = "expression"
+	Separator = "SEPARATOR"
+	CompilationMode = "Debug"
+	ParserType = "RNGLR"
+	Runtime = "Net"
+	Namespace = "Mean.Language.Generated"
+	AccessModifier = "Internal"
+Terminals:
+	__T0000 = <
+	__T0001 = ,
+	__T0002 = >
+	__T0003 = =
+	__T0004 = (
+	__T0005 = )
+	__T0006 = [
+	__T0007 = ]
+	__T0008 = .
+	__T0009 = -
+	__T000A = !
+	__T000B = *
+	__T000C = /
+	__T000D = %
+	__T000E = mod
+	__T000F = +
+	__T0010 = shl
+	__T0011 = shr
+	__T0012 = ==
+	__T0013 = !=
+	__T0014 = <=
+	__T0015 = >=
+	__T0016 = &
+	__T0017 = ^
+	__T0018 = |
+	__T0019 = &&
+	__T001A = ||
+	__T001B = {
+	__T001C = }
+	BOOL_LITERAL = BOOL_LITERAL
+	COMMENT_BLOCK = COMMENT_BLOCK
+	COMMENT_LINE = COMMENT_LINE
+	FLOAT_LITERAL = FLOAT_LITERAL
+	IDENTIFIER = IDENTIFIER
+	INTEGER_LITERAL = INTEGER_LITERAL
+	NEW_LINE = NEW_LINE
+	SEPARATOR = SEPARATOR
+	WHITE_SPACE = WHITE_SPACE
+Rules:
+	__V15 -> ,! name
+	__V15 -> __V15 ,! name
+	__V17 -> ,! genericArgsBinding
+	__V17 -> __V17 ,! genericArgsBinding
+	__V58 -> ,! expression
+	__V58 -> __V58 ,! expression
+	__VAxiom -> expression^ $!
+	addExpression -> "addOp"^ addExpression +! mulExpression
+	addExpression -> "subOp"^ addExpression -! mulExpression
+	addExpression -> mulExpression^
+	andExpression -> "andThenOp"^ andExpression &&^ bitOrExpression
+	andExpression -> bitOrExpression^
+	bitAndExpression -> "andOp"^ bitAndExpression &! equalityExpression
+	bitAndExpression -> equalityExpression^
+	bitOrExpression -> "orOp"^ bitOrExpression |! bitXorExpression
+	bitOrExpression -> bitXorExpression^
+	bitXorExpression -> "xorOp"^ bitXorExpression ^! bitAndExpression
+	bitXorExpression -> bitAndExpression^
+	boolLiteral -> BOOL_LITERAL
+	equalityExpression -> "eqOp"^ shiftExpression ==! shiftExpression
+	equalityExpression -> "neOp"^ shiftExpression !=! shiftExpression
+	equalityExpression -> "ltOp"^ shiftExpression <! shiftExpression
+	equalityExpression -> "ltleOp"^ shiftExpression <! shiftExpression <=! shiftExpression
+	equalityExpression -> "ltltOp"^ shiftExpression <! shiftExpression <! shiftExpression
+	equalityExpression -> "leOp"^ shiftExpression <=! shiftExpression
+	equalityExpression -> "leleOp"^ shiftExpression <=! shiftExpression <=! shiftExpression
+	equalityExpression -> "leltOp"^ shiftExpression <=! shiftExpression <! shiftExpression
+	equalityExpression -> "gtOp"^ shiftExpression >! shiftExpression
+	equalityExpression -> "gtgeOp"^ shiftExpression >! shiftExpression >=! shiftExpression
+	equalityExpression -> "gtgtOp"^ shiftExpression >! shiftExpression >! shiftExpression
+	equalityExpression -> "geOp"^ shiftExpression >=! shiftExpression
+	equalityExpression -> "gegeOp"^ shiftExpression >=! shiftExpression >=! shiftExpression
+	equalityExpression -> "gegtOp"^ shiftExpression >=! shiftExpression >! shiftExpression
+	equalityExpression -> shiftExpression^
+	expression -> withBlockExpression^
+	expression -> withoutBlockExpression^
+	floatLiteral -> FLOAT_LITERAL
+	genericArgs -> <! genericArgsTypes >!
+	genericArgs -> <! genericArgsTypes ,! >!
+	genericArgs -> <! genericArgsTypes genericArgsBindings >!
+	genericArgsBinding -> identifier =! type
+	genericArgsBindings -> ,! list<genericArgsBinding, __T0001>^
+	genericArgsTypes -> list<name, __T0001>^
+	identifier -> IDENTIFIER
+	integerLiteral -> INTEGER_LITERAL
+	list<genericArgsBinding, __T0001> -> genericArgsBinding^
+	list<genericArgsBinding, __T0001> -> genericArgsBinding^ __V17^
+	list<genericArgsBinding, __T0001> ->
+	list<name, __T0001> -> name^
+	list<name, __T0001> -> name^ __V15^
+	list<name, __T0001> ->
+	literal -> numberLiteral^
+	literal -> boolLiteral^
+	mulExpression -> "mulOp"^ mulExpression *! unaryExpression
+	mulExpression -> "divOp"^ mulExpression /! unaryExpression
+	mulExpression -> "remOp"^ mulExpression %! unaryExpression
+	mulExpression -> "modOp"^ mulExpression mod! unaryExpression
+	mulExpression -> unaryExpression^
+	name -> identifier
+	name -> identifier genericArgs
+	numberLiteral -> integerLiteral^
+	numberLiteral -> floatLiteral^
+	orExpression -> "orElseOp"^ orExpression ||^ andExpression
+	orExpression -> andExpression^
+	postfixExpression -> "flist"^ postfixExpression ( sloppyList<expression, __T0001> )
+	postfixExpression -> "iselect"^ postfixExpression [! expression ]!
+	postfixExpression -> "tselect"^ postfixExpression .! integerLiteral
+	postfixExpression -> "mselect"^ postfixExpression .! name
+	postfixExpression -> primaryExpression^
+	primaryExpression -> literal^
+	primaryExpression -> (! expression^ )!
+	primaryExpression -> name^
+	shiftExpression -> "shlOp"^ shiftExpression shl! addExpression
+	shiftExpression -> "shrOp"^ shiftExpression shr! addExpression
+	shiftExpression -> addExpression^
+	sloppyList<expression, __T0001> -> expression
+	sloppyList<expression, __T0001> -> expression ,!
+	sloppyList<expression, __T0001> -> expression __V58
+	sloppyList<expression, __T0001> -> expression __V58 ,!
+	sloppyList<expression, __T0001> ->
+	type -> IDENTIFIER
+	unaryExpression -> "negOp"^ -! postfixExpression
+	unaryExpression -> "notOp"^ !! postfixExpression
+	unaryExpression -> postfixExpression^
+	withBlockExpression -> {! expression^ }!
+	withoutBlockExpression -> orExpression^

@@ -9,7 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="*.bin" />
+    <EmbeddedResource Include="Generated\*.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated\" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -17,7 +21,7 @@
   </PropertyGroup>
 
   <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(Grammars)" Outputs="$(ProjectDir)MeanParser.cs">
-    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral -g Mean -p $(ProjectDir)&#xD;&#xA;" />
+    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral MeanExpression MeanType MeanTools -g Mean -p $(ProjectDir)Generated&#xD;&#xA;" />
   </Target>
 
 </Project>
