@@ -23,21 +23,33 @@ namespace Mean.Language
 		public class ID
 		{
 			/// <summary>
+			/// The unique identifier for variable numberLiteral
+			/// </summary>
+			public const int VariableNumberLiteral = 0x000F;
+			/// <summary>
+			/// The unique identifier for variable boolLiteral
+			/// </summary>
+			public const int VariableBoolLiteral = 0x0010;
+			/// <summary>
+			/// The unique identifier for variable literal
+			/// </summary>
+			public const int VariableLiteral = 0x0011;
+			/// <summary>
 			/// The unique identifier for variable primary_expression
 			/// </summary>
-			public const int VariablePrimaryExpression = 0x000C;
+			public const int VariablePrimaryExpression = 0x0012;
 			/// <summary>
 			/// The unique identifier for variable exp_factor
 			/// </summary>
-			public const int VariableExpFactor = 0x000D;
+			public const int VariableExpFactor = 0x0013;
 			/// <summary>
 			/// The unique identifier for variable exp_term
 			/// </summary>
-			public const int VariableExpTerm = 0x000E;
+			public const int VariableExpTerm = 0x0014;
 			/// <summary>
 			/// The unique identifier for variable expression
 			/// </summary>
-			public const int VariableExpression = 0x000F;
+			public const int VariableExpression = 0x0015;
 		}
 		/// <summary>
 		/// The collection of variables matched by this parser
@@ -47,11 +59,14 @@ namespace Mean.Language
 		/// so that variable indices in the automaton can be used to retrieve the variables in this table
 		/// </remarks>
 		private static readonly Symbol[] variables = {
-			new Symbol(0x000C, "primary_expression"), 
-			new Symbol(0x000D, "exp_factor"), 
-			new Symbol(0x000E, "exp_term"), 
-			new Symbol(0x000F, "expression"), 
-			new Symbol(0x0016, "__VAxiom") };
+			new Symbol(0x000F, "numberLiteral"), 
+			new Symbol(0x0010, "boolLiteral"), 
+			new Symbol(0x0011, "literal"), 
+			new Symbol(0x0012, "primary_expression"), 
+			new Symbol(0x0013, "exp_factor"), 
+			new Symbol(0x0014, "exp_term"), 
+			new Symbol(0x0015, "expression"), 
+			new Symbol(0x001C, "__VAxiom") };
 		/// <summary>
 		/// The collection of virtuals matched by this parser
 		/// </summary>
@@ -76,11 +91,15 @@ namespace Mean.Language
 			public virtual void OnTerminalWhiteSpace(ASTNode node) {}
 			public virtual void OnTerminalCommentLine(ASTNode node) {}
 			public virtual void OnTerminalCommentBlock(ASTNode node) {}
+			public virtual void OnTerminalSeparator(ASTNode node) {}
 			public virtual void OnTerminalIdentifier(ASTNode node) {}
 			public virtual void OnTerminalInteger(ASTNode node) {}
 			public virtual void OnTerminalReal(ASTNode node) {}
 			public virtual void OnTerminalNumber(ASTNode node) {}
-			public virtual void OnTerminalSeparator(ASTNode node) {}
+			public virtual void OnTerminalBoolLiteral(ASTNode node) {}
+			public virtual void OnVariableNumberLiteral(ASTNode node) {}
+			public virtual void OnVariableBoolLiteral(ASTNode node) {}
+			public virtual void OnVariableLiteral(ASTNode node) {}
 			public virtual void OnVariablePrimaryExpression(ASTNode node) {}
 			public virtual void OnVariableExpFactor(ASTNode node) {}
 			public virtual void OnVariableExpTerm(ASTNode node) {}
@@ -108,15 +127,19 @@ namespace Mean.Language
 				case 0x0004: visitor.OnTerminalWhiteSpace(node); break;
 				case 0x0005: visitor.OnTerminalCommentLine(node); break;
 				case 0x0006: visitor.OnTerminalCommentBlock(node); break;
-				case 0x0007: visitor.OnTerminalIdentifier(node); break;
-				case 0x0008: visitor.OnTerminalInteger(node); break;
-				case 0x0009: visitor.OnTerminalReal(node); break;
-				case 0x000A: visitor.OnTerminalNumber(node); break;
-				case 0x000B: visitor.OnTerminalSeparator(node); break;
-				case 0x000C: visitor.OnVariablePrimaryExpression(node); break;
-				case 0x000D: visitor.OnVariableExpFactor(node); break;
-				case 0x000E: visitor.OnVariableExpTerm(node); break;
-				case 0x000F: visitor.OnVariableExpression(node); break;
+				case 0x0007: visitor.OnTerminalSeparator(node); break;
+				case 0x0008: visitor.OnTerminalIdentifier(node); break;
+				case 0x0009: visitor.OnTerminalInteger(node); break;
+				case 0x000A: visitor.OnTerminalReal(node); break;
+				case 0x000B: visitor.OnTerminalNumber(node); break;
+				case 0x000C: visitor.OnTerminalBoolLiteral(node); break;
+				case 0x000F: visitor.OnVariableNumberLiteral(node); break;
+				case 0x0010: visitor.OnVariableBoolLiteral(node); break;
+				case 0x0011: visitor.OnVariableLiteral(node); break;
+				case 0x0012: visitor.OnVariablePrimaryExpression(node); break;
+				case 0x0013: visitor.OnVariableExpFactor(node); break;
+				case 0x0014: visitor.OnVariableExpTerm(node); break;
+				case 0x0015: visitor.OnVariableExpression(node); break;
 			}
 		}
 	}

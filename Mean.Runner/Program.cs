@@ -7,7 +7,8 @@ namespace Mean.Runner
     {
         static void Main(string[] args)
         {
-            MeanCheck.Run();
+            MeanCheck.Run("2 + 3 * 4");
+            MeanCheck.Run("true + false * true");
 
             Console.ReadKey(true);
         }

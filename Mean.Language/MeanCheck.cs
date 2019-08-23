@@ -5,14 +5,25 @@ namespace Mean.Language
 {
     public static class MeanCheck
     {
-        public static void Run()
+        public static void Run(string source)
         {
-            var lexer = new MeanLexer("2 + 3 * 4");
+            var lexer = new MeanLexer(source);
             var parser = new MeanParser(lexer);
 
             var result = parser.Parse();
 
-            Print(result.Root, new bool[] { });
+            if (!result.IsSuccess)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine($"{error}");
+                }
+            }
+            else
+            {
+
+                Print(result.Root, new bool[] { });
+            }
         }
 
         private static void Print(ASTNode node, bool[] crossings)

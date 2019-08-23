@@ -1,0 +1,42 @@
+﻿grammar MeanLiteral
+{
+    options {}
+    
+    terminals
+    {
+        INTEGER
+            -> '0'
+            |  [1-9] [0-9]*
+            ;
+
+        REAL
+            -> INTEGER? '.' [0-9]+  (('e' | 'E') ('+' | '-')? INTEGER)?
+            |  INTEGER ('e' | 'E') ('+' | '-')? INTEGER
+            ;
+
+        NUMBER
+            -> INTEGER
+            | REAL
+            ;
+
+        BOOL_LITERAL
+            -> 'true' | 'false'
+            ;
+    }
+  
+    rules
+    {
+        numberLiteral
+            ->  NUMBER
+            ;
+
+        boolLiteral
+            -> 'true' | 'false'
+            ;
+
+        literal
+            ->  numberLiteral^
+            |   boolLiteral^
+            ;
+    }
+}

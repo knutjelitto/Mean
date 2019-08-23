@@ -8,13 +8,16 @@
     <PackageReference Include="Hime.SDK" Version="3.4.0" />
   </ItemGroup>
 
-
   <ItemGroup>
     <EmbeddedResource Include="*.bin" />
   </ItemGroup>
 
-  <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(ProjectDir)Mean.Grammar" Outputs="$(ProjectDir)MeanParser.cs">
-    <Exec Command="cd $(ProjectDir)&#xD;&#xA;..\hime-3.4.0\net461\himecc.exe Mean.Grammar&#xD;&#xA;" />
+  <PropertyGroup>
+    <Grammars>$(Grammar)Mean;$(Grammar)MeanLiteral</Grammars>
+  </PropertyGroup>
+
+  <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(Grammars)" Outputs="$(ProjectDir)MeanParser.cs">
+    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral -g Mean -p $(ProjectDir)&#xD;&#xA;" />
   </Target>
 
 </Project>

@@ -1,0 +1,15 @@
+﻿grammar MeanIdentifier
+{
+    options {}
+    
+    terminals
+    {
+        IDENTIFIER
+            -> [a-zA-Z_] [a-zA-Z0-9_]*
+            ;
+    }
+  
+    rules
+    {
+    }
+}

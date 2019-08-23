@@ -1,0 +1,41 @@
+﻿grammar Mean : MeanSpacing, MeanIdentifier, MeanLiteral
+{
+    options
+    {
+        Axiom       = "expression"; // the top variable for this grammar
+        Separator   = "SEPARATOR"; // the terminal that represent white space
+
+        CompilationMode = "Source";
+        ParserType = "LR";
+        //ParserType = "RNGLR";
+        Runtime = "Net";
+        Namespace = "Mean.Language";
+        AccessModifier = "Internal";
+    }
+    
+    terminals { }
+  
+    rules
+    {
+        primary_expression
+            ->  literal^
+            |   '('! expression^ ')'!
+            ;
+
+        exp_factor
+            -> primary_expression^
+            |  exp_factor '*'^ primary_expression
+            |  exp_factor '/'^  primary_expression
+            ;
+
+        exp_term
+            -> exp_factor^
+            |  exp_term '+'^ exp_factor
+            |  exp_term '-'^ exp_factor
+            ;
+
+        expression
+            -> exp_term^
+            ;
+    }
+}
