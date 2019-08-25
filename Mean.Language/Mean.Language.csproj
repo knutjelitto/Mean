@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Hime.SDK" Version="3.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -16,12 +20,30 @@
     <Folder Include="Generated\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mean.Hime.Tweak\Mean.Hime.Tweak.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
-    <Grammars>$(Grammar)Mean;$(Grammar)MeanLiteral</Grammars>
+    <ProjectDir>$(MSBuildProjectDirectory)\</ProjectDir>
+    <Grammars>$(ProjectDir)Grammar\</Grammars>
+    <Generateds>$(ProjectDir)Generated\</Generateds>
+    <GrammarInputs>$(Grammars)Mean;$(Grammars)MeanLiteral</GrammarInputs>
+    <GrammarOutputs>$(Generateds)MeanParser.bin</GrammarOutputs>
   </PropertyGroup>
 
-  <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(Grammars)" Outputs="$(ProjectDir)MeanParser.cs">
+  <PropertyGroup>
+    <Tweak>..\Mean.Hime.Tweak\bin\Debug\netcoreapp2.2\Mean.Hime.Tweak.dll</Tweak>
+  </PropertyGroup>
+
+  <!--<Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild" Inputs="$(GrammarInputs)" Outputs="$(GrammarOutputs)">-->
+  <Target Name="HimeCC" BeforeTargets="Compile;CoreCompile;Build;CoreBuild">
+    <Message Importance="high" Text="XXX ProjectDir     XXX $(ProjectDir)" />
+    <Message Importance="high" Text="XXX GrammarInputs  XXX $(GrammarInputs)" />
+    <Message Importance="high" Text="XXX GrammarOutputs XXX $(GrammarOutputs)" />
     <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral MeanExpression MeanType MeanTools -g Mean -p $(ProjectDir)Generated&#xD;&#xA;" />
+    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral MeanExpression MeanType MeanTools -g MeanExpression -p $(ProjectDir)Generated&#xD;&#xA;" />
+    <Exec Command="dotnet $(Tweak) $(ProjectDir)Generated/MeanParser.cs $(ProjectDir)Generated/MeanVisitor.cs" />
   </Target>
 
 </Project>

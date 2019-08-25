@@ -4,7 +4,7 @@
     
     terminals
     {
-        NEW_LINE	
+        fragment NEW_LINE
             -> U+000D           /* CR */
             |  U+000A           /* LF */
             |  U+000D U+000A    /* CR LF */
@@ -13,15 +13,15 @@
             |  U+2029           // Paragraph separator character
             ;
 
-        WHITE_SPACE
+        fragment WHITE_SPACE
             -> uc{Zs} | U+0009 | U+000B | U+000C
             ;
 
-        COMMENT_LINE
+        fragment COMMENT_LINE
             -> '//' (.* - (.* NEW_LINE .*))
             ;
 
-        COMMENT_BLOCK
+        fragment COMMENT_BLOCK
             -> '/*' (.* - (.* '*/' .*)) '*/'
             ;
 

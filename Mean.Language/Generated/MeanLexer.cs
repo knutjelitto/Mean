@@ -24,22 +24,6 @@ namespace Mean.Language.Generated
 		public class ID
 		{
 			/// <summary>
-			/// The unique identifier for terminal NEW_LINE
-			/// </summary>
-			public const int TerminalNewLine = 0x0003;
-			/// <summary>
-			/// The unique identifier for terminal WHITE_SPACE
-			/// </summary>
-			public const int TerminalWhiteSpace = 0x0004;
-			/// <summary>
-			/// The unique identifier for terminal COMMENT_LINE
-			/// </summary>
-			public const int TerminalCommentLine = 0x0005;
-			/// <summary>
-			/// The unique identifier for terminal COMMENT_BLOCK
-			/// </summary>
-			public const int TerminalCommentBlock = 0x0006;
-			/// <summary>
 			/// The unique identifier for terminal SEPARATOR
 			/// </summary>
 			public const int TerminalSeparator = 0x0007;
@@ -80,10 +64,6 @@ namespace Mean.Language.Generated
 		private static readonly Symbol[] terminals = {
 			new Symbol(0x0001, "ε"),
 			new Symbol(0x0002, "$"),
-			new Symbol(0x0003, "NEW_LINE"),
-			new Symbol(0x0004, "WHITE_SPACE"),
-			new Symbol(0x0005, "COMMENT_LINE"),
-			new Symbol(0x0006, "COMMENT_BLOCK"),
 			new Symbol(0x0007, "SEPARATOR"),
 			new Symbol(0x0014, "IDENTIFIER"),
 			new Symbol(0x0015, "INTEGER_LITERAL"),
@@ -99,12 +79,12 @@ namespace Mean.Language.Generated
 			new Symbol(0x001F, "]"),
 			new Symbol(0x0020, "."),
 			new Symbol(0x0021, "-"),
-			new Symbol(0x0022, "!"),
-			new Symbol(0x0023, "*"),
-			new Symbol(0x0024, "/"),
-			new Symbol(0x0025, "%"),
-			new Symbol(0x0026, "mod"),
-			new Symbol(0x0027, "+"),
+			new Symbol(0x0022, "+"),
+			new Symbol(0x0023, "!"),
+			new Symbol(0x0024, "*"),
+			new Symbol(0x0025, "/"),
+			new Symbol(0x0026, "%"),
+			new Symbol(0x0027, "mod"),
 			new Symbol(0x0028, "shl"),
 			new Symbol(0x0029, "shr"),
 			new Symbol(0x002A, "=="),
@@ -116,8 +96,12 @@ namespace Mean.Language.Generated
 			new Symbol(0x0030, "|"),
 			new Symbol(0x0031, "&&"),
 			new Symbol(0x0032, "||"),
-			new Symbol(0x0033, "{"),
-			new Symbol(0x0034, "}") };
+			new Symbol(0x0033, "?"),
+			new Symbol(0x0034, ":"),
+			new Symbol(0x0035, "{"),
+			new Symbol(0x0036, "}"),
+			new Symbol(0x0084, "namespace"),
+			new Symbol(0x0086, "fun") };
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>

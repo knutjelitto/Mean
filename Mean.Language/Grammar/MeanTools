@@ -7,13 +7,11 @@
     rules
     {
         sloppyList<item, separator>
-            ->  item (separator! item)* (separator?)!
-            |
+            -> (item (separator! item)*)^ (separator?)!
             ;
 
         list<item, separator>
-            ->  (item (separator! item)*)^
-            |
+            -> (item (separator! item)*)^
             ;
     }
 }

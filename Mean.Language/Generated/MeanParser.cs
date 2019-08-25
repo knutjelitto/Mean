@@ -25,255 +25,295 @@ namespace Mean.Language.Generated
 			/// <summary>
 			/// The unique identifier for variable identifier
 			/// </summary>
-			public const int VariableIdentifier = 0x0056;
+			public const int VariableIdentifier = 0x005A;
 			/// <summary>
 			/// The unique identifier for variable integerLiteral
 			/// </summary>
-			public const int VariableIntegerLiteral = 0x0057;
+			public const int VariableIntegerLiteral = 0x005B;
+			/// <summary>
+			/// The unique identifier for variable tupleIndex
+			/// </summary>
+			public const int VariableTupleIndex = 0x005C;
 			/// <summary>
 			/// The unique identifier for variable floatLiteral
 			/// </summary>
-			public const int VariableFloatLiteral = 0x0058;
+			public const int VariableFloatLiteral = 0x005D;
 			/// <summary>
 			/// The unique identifier for variable numberLiteral
 			/// </summary>
-			public const int VariableNumberLiteral = 0x0059;
+			public const int VariableNumberLiteral = 0x005E;
 			/// <summary>
 			/// The unique identifier for variable boolLiteral
 			/// </summary>
-			public const int VariableBoolLiteral = 0x005A;
+			public const int VariableBoolLiteral = 0x005F;
 			/// <summary>
 			/// The unique identifier for variable literal
 			/// </summary>
-			public const int VariableLiteral = 0x005B;
+			public const int VariableLiteral = 0x0060;
 			/// <summary>
 			/// The unique identifier for variable type
 			/// </summary>
-			public const int VariableType = 0x005C;
+			public const int VariableType = 0x0061;
 			/// <summary>
 			/// The unique identifier for variable name
 			/// </summary>
-			public const int VariableName = 0x005D;
+			public const int VariableName = 0x0062;
 			/// <summary>
 			/// The unique identifier for variable genericArgs
 			/// </summary>
-			public const int VariableGenericArgs = 0x005E;
+			public const int VariableGenericArgs = 0x0063;
 			/// <summary>
 			/// The unique identifier for variable genericArgsTypes
 			/// </summary>
-			public const int VariableGenericArgsTypes = 0x005F;
+			public const int VariableGenericArgsTypes = 0x0064;
 			/// <summary>
 			/// The unique identifier for variable genericArgsBindings
 			/// </summary>
-			public const int VariableGenericArgsBindings = 0x0060;
+			public const int VariableGenericArgsBindings = 0x0065;
 			/// <summary>
 			/// The unique identifier for variable genericArgsBinding
 			/// </summary>
-			public const int VariableGenericArgsBinding = 0x0061;
+			public const int VariableGenericArgsBinding = 0x0066;
 			/// <summary>
 			/// The unique identifier for variable list<name, __T0001>
 			/// </summary>
-			public const int VariableListNameT0001 = 0x0062;
+			public const int VariableListNameT0001 = 0x0067;
 			/// <summary>
 			/// The unique identifier for variable list<genericArgsBinding, __T0001>
 			/// </summary>
-			public const int VariableListGenericArgsBindingT0001 = 0x0064;
+			public const int VariableListGenericArgsBindingT0001 = 0x0069;
 			/// <summary>
 			/// The unique identifier for variable primaryExpression
 			/// </summary>
-			public const int VariablePrimaryExpression = 0x0066;
+			public const int VariablePrimaryExpression = 0x006B;
 			/// <summary>
 			/// The unique identifier for variable postfixExpression
 			/// </summary>
-			public const int VariablePostfixExpression = 0x0067;
+			public const int VariablePostfixExpression = 0x006C;
 			/// <summary>
 			/// The unique identifier for variable unaryExpression
 			/// </summary>
-			public const int VariableUnaryExpression = 0x0068;
+			public const int VariableUnaryExpression = 0x006D;
 			/// <summary>
 			/// The unique identifier for variable mulExpression
 			/// </summary>
-			public const int VariableMulExpression = 0x0069;
+			public const int VariableMulExpression = 0x006E;
 			/// <summary>
 			/// The unique identifier for variable addExpression
 			/// </summary>
-			public const int VariableAddExpression = 0x006A;
+			public const int VariableAddExpression = 0x006F;
 			/// <summary>
 			/// The unique identifier for variable shiftExpression
 			/// </summary>
-			public const int VariableShiftExpression = 0x006B;
+			public const int VariableShiftExpression = 0x0070;
 			/// <summary>
 			/// The unique identifier for variable equalityExpression
 			/// </summary>
-			public const int VariableEqualityExpression = 0x006C;
+			public const int VariableEqualityExpression = 0x0071;
 			/// <summary>
 			/// The unique identifier for variable bitAndExpression
 			/// </summary>
-			public const int VariableBitAndExpression = 0x006D;
+			public const int VariableBitAndExpression = 0x0072;
 			/// <summary>
 			/// The unique identifier for variable bitXorExpression
 			/// </summary>
-			public const int VariableBitXorExpression = 0x006E;
+			public const int VariableBitXorExpression = 0x0073;
 			/// <summary>
 			/// The unique identifier for variable bitOrExpression
 			/// </summary>
-			public const int VariableBitOrExpression = 0x006F;
+			public const int VariableBitOrExpression = 0x0074;
 			/// <summary>
 			/// The unique identifier for variable andExpression
 			/// </summary>
-			public const int VariableAndExpression = 0x0070;
+			public const int VariableAndExpression = 0x0075;
 			/// <summary>
 			/// The unique identifier for variable orExpression
 			/// </summary>
-			public const int VariableOrExpression = 0x0071;
+			public const int VariableOrExpression = 0x0076;
+			/// <summary>
+			/// The unique identifier for variable conditionalExpression
+			/// </summary>
+			public const int VariableConditionalExpression = 0x0077;
 			/// <summary>
 			/// The unique identifier for variable withoutBlockExpression
 			/// </summary>
-			public const int VariableWithoutBlockExpression = 0x0072;
-			/// <summary>
-			/// The unique identifier for variable withBlockExpression
-			/// </summary>
-			public const int VariableWithBlockExpression = 0x0073;
+			public const int VariableWithoutBlockExpression = 0x0078;
 			/// <summary>
 			/// The unique identifier for variable expression
 			/// </summary>
-			public const int VariableExpression = 0x0074;
+			public const int VariableExpression = 0x0079;
+			/// <summary>
+			/// The unique identifier for variable withBlockExpression
+			/// </summary>
+			public const int VariableWithBlockExpression = 0x007A;
+			/// <summary>
+			/// The unique identifier for variable blockExpression
+			/// </summary>
+			public const int VariableBlockExpression = 0x007B;
 			/// <summary>
 			/// The unique identifier for variable sloppyList<expression, __T0001>
 			/// </summary>
-			public const int VariableSloppyListExpressionT0001 = 0x0075;
+			public const int VariableSloppyListExpressionT0001 = 0x007C;
+			/// <summary>
+			/// The unique identifier for variable unit
+			/// </summary>
+			public const int VariableUnit = 0x007E;
+			/// <summary>
+			/// The unique identifier for variable unitItem
+			/// </summary>
+			public const int VariableUnitItem = 0x007F;
+			/// <summary>
+			/// The unique identifier for variable namespace
+			/// </summary>
+			public const int VariableNamespace = 0x0080;
+			/// <summary>
+			/// The unique identifier for variable namespaceItem
+			/// </summary>
+			public const int VariableNamespaceItem = 0x0081;
+			/// <summary>
+			/// The unique identifier for variable function
+			/// </summary>
+			public const int VariableFunction = 0x0082;
 			/// <summary>
 			/// The unique identifier for virtual flist
 			/// </summary>
-			public const int VirtualFlist = 0x0035;
+			public const int VirtualFlist = 0x0037;
 			/// <summary>
 			/// The unique identifier for virtual iselect
 			/// </summary>
-			public const int VirtualIselect = 0x0036;
+			public const int VirtualIselect = 0x0038;
 			/// <summary>
 			/// The unique identifier for virtual tselect
 			/// </summary>
-			public const int VirtualTselect = 0x0037;
+			public const int VirtualTselect = 0x0039;
 			/// <summary>
 			/// The unique identifier for virtual mselect
 			/// </summary>
-			public const int VirtualMselect = 0x0038;
+			public const int VirtualMselect = 0x003A;
 			/// <summary>
 			/// The unique identifier for virtual negOp
 			/// </summary>
-			public const int VirtualNegOp = 0x0039;
+			public const int VirtualNegOp = 0x003B;
+			/// <summary>
+			/// The unique identifier for virtual posOp
+			/// </summary>
+			public const int VirtualPosOp = 0x003C;
 			/// <summary>
 			/// The unique identifier for virtual notOp
 			/// </summary>
-			public const int VirtualNotOp = 0x003A;
+			public const int VirtualNotOp = 0x003D;
 			/// <summary>
 			/// The unique identifier for virtual mulOp
 			/// </summary>
-			public const int VirtualMulOp = 0x003B;
+			public const int VirtualMulOp = 0x003E;
 			/// <summary>
 			/// The unique identifier for virtual divOp
 			/// </summary>
-			public const int VirtualDivOp = 0x003C;
+			public const int VirtualDivOp = 0x003F;
 			/// <summary>
 			/// The unique identifier for virtual remOp
 			/// </summary>
-			public const int VirtualRemOp = 0x003D;
+			public const int VirtualRemOp = 0x0040;
 			/// <summary>
 			/// The unique identifier for virtual modOp
 			/// </summary>
-			public const int VirtualModOp = 0x003E;
+			public const int VirtualModOp = 0x0041;
 			/// <summary>
 			/// The unique identifier for virtual addOp
 			/// </summary>
-			public const int VirtualAddOp = 0x003F;
+			public const int VirtualAddOp = 0x0042;
 			/// <summary>
 			/// The unique identifier for virtual subOp
 			/// </summary>
-			public const int VirtualSubOp = 0x0040;
+			public const int VirtualSubOp = 0x0043;
 			/// <summary>
 			/// The unique identifier for virtual shlOp
 			/// </summary>
-			public const int VirtualShlOp = 0x0041;
+			public const int VirtualShlOp = 0x0044;
 			/// <summary>
 			/// The unique identifier for virtual shrOp
 			/// </summary>
-			public const int VirtualShrOp = 0x0042;
+			public const int VirtualShrOp = 0x0045;
 			/// <summary>
 			/// The unique identifier for virtual eqOp
 			/// </summary>
-			public const int VirtualEqOp = 0x0043;
+			public const int VirtualEqOp = 0x0046;
 			/// <summary>
 			/// The unique identifier for virtual neOp
 			/// </summary>
-			public const int VirtualNeOp = 0x0044;
+			public const int VirtualNeOp = 0x0047;
 			/// <summary>
 			/// The unique identifier for virtual ltOp
 			/// </summary>
-			public const int VirtualLtOp = 0x0045;
+			public const int VirtualLtOp = 0x0048;
 			/// <summary>
 			/// The unique identifier for virtual ltleOp
 			/// </summary>
-			public const int VirtualLtleOp = 0x0046;
+			public const int VirtualLtleOp = 0x0049;
 			/// <summary>
 			/// The unique identifier for virtual ltltOp
 			/// </summary>
-			public const int VirtualLtltOp = 0x0047;
+			public const int VirtualLtltOp = 0x004A;
 			/// <summary>
 			/// The unique identifier for virtual leOp
 			/// </summary>
-			public const int VirtualLeOp = 0x0048;
+			public const int VirtualLeOp = 0x004B;
 			/// <summary>
 			/// The unique identifier for virtual leleOp
 			/// </summary>
-			public const int VirtualLeleOp = 0x0049;
+			public const int VirtualLeleOp = 0x004C;
 			/// <summary>
 			/// The unique identifier for virtual leltOp
 			/// </summary>
-			public const int VirtualLeltOp = 0x004A;
+			public const int VirtualLeltOp = 0x004D;
 			/// <summary>
 			/// The unique identifier for virtual gtOp
 			/// </summary>
-			public const int VirtualGtOp = 0x004B;
+			public const int VirtualGtOp = 0x004E;
 			/// <summary>
 			/// The unique identifier for virtual gtgeOp
 			/// </summary>
-			public const int VirtualGtgeOp = 0x004C;
+			public const int VirtualGtgeOp = 0x004F;
 			/// <summary>
 			/// The unique identifier for virtual gtgtOp
 			/// </summary>
-			public const int VirtualGtgtOp = 0x004D;
+			public const int VirtualGtgtOp = 0x0050;
 			/// <summary>
 			/// The unique identifier for virtual geOp
 			/// </summary>
-			public const int VirtualGeOp = 0x004E;
+			public const int VirtualGeOp = 0x0051;
 			/// <summary>
 			/// The unique identifier for virtual gegeOp
 			/// </summary>
-			public const int VirtualGegeOp = 0x004F;
+			public const int VirtualGegeOp = 0x0052;
 			/// <summary>
 			/// The unique identifier for virtual gegtOp
 			/// </summary>
-			public const int VirtualGegtOp = 0x0050;
+			public const int VirtualGegtOp = 0x0053;
 			/// <summary>
 			/// The unique identifier for virtual andOp
 			/// </summary>
-			public const int VirtualAndOp = 0x0051;
+			public const int VirtualAndOp = 0x0054;
 			/// <summary>
 			/// The unique identifier for virtual xorOp
 			/// </summary>
-			public const int VirtualXorOp = 0x0052;
+			public const int VirtualXorOp = 0x0055;
 			/// <summary>
 			/// The unique identifier for virtual orOp
 			/// </summary>
-			public const int VirtualOrOp = 0x0053;
+			public const int VirtualOrOp = 0x0056;
 			/// <summary>
 			/// The unique identifier for virtual andThenOp
 			/// </summary>
-			public const int VirtualAndThenOp = 0x0054;
+			public const int VirtualAndThenOp = 0x0057;
 			/// <summary>
 			/// The unique identifier for virtual orElseOp
 			/// </summary>
-			public const int VirtualOrElseOp = 0x0055;
+			public const int VirtualOrElseOp = 0x0058;
+			/// <summary>
+			/// The unique identifier for virtual iff
+			/// </summary>
+			public const int VirtualIff = 0x0059;
 		}
 		/// <summary>
 		/// The collection of variables matched by this parser
@@ -283,40 +323,50 @@ namespace Mean.Language.Generated
 		/// so that variable indices in the automaton can be used to retrieve the variables in this table
 		/// </remarks>
 		private static readonly Symbol[] variables = {
-			new Symbol(0x0056, "identifier"), 
-			new Symbol(0x0057, "integerLiteral"), 
-			new Symbol(0x0058, "floatLiteral"), 
-			new Symbol(0x0059, "numberLiteral"), 
-			new Symbol(0x005A, "boolLiteral"), 
-			new Symbol(0x005B, "literal"), 
-			new Symbol(0x005C, "type"), 
-			new Symbol(0x005D, "name"), 
-			new Symbol(0x005E, "genericArgs"), 
-			new Symbol(0x005F, "genericArgsTypes"), 
-			new Symbol(0x0060, "genericArgsBindings"), 
-			new Symbol(0x0061, "genericArgsBinding"), 
-			new Symbol(0x0062, "list<name, __T0001>"), 
-			new Symbol(0x0063, "__V15"), 
-			new Symbol(0x0064, "list<genericArgsBinding, __T0001>"), 
-			new Symbol(0x0065, "__V17"), 
-			new Symbol(0x0066, "primaryExpression"), 
-			new Symbol(0x0067, "postfixExpression"), 
-			new Symbol(0x0068, "unaryExpression"), 
-			new Symbol(0x0069, "mulExpression"), 
-			new Symbol(0x006A, "addExpression"), 
-			new Symbol(0x006B, "shiftExpression"), 
-			new Symbol(0x006C, "equalityExpression"), 
-			new Symbol(0x006D, "bitAndExpression"), 
-			new Symbol(0x006E, "bitXorExpression"), 
-			new Symbol(0x006F, "bitOrExpression"), 
-			new Symbol(0x0070, "andExpression"), 
-			new Symbol(0x0071, "orExpression"), 
-			new Symbol(0x0072, "withoutBlockExpression"), 
-			new Symbol(0x0073, "withBlockExpression"), 
-			new Symbol(0x0074, "expression"), 
-			new Symbol(0x0075, "sloppyList<expression, __T0001>"), 
-			new Symbol(0x0076, "__V58"), 
-			new Symbol(0x0077, "__VAxiom") };
+			new Symbol(0x005A, "identifier"), 
+			new Symbol(0x005B, "integerLiteral"), 
+			new Symbol(0x005C, "tupleIndex"), 
+			new Symbol(0x005D, "floatLiteral"), 
+			new Symbol(0x005E, "numberLiteral"), 
+			new Symbol(0x005F, "boolLiteral"), 
+			new Symbol(0x0060, "literal"), 
+			new Symbol(0x0061, "type"), 
+			new Symbol(0x0062, "name"), 
+			new Symbol(0x0063, "genericArgs"), 
+			new Symbol(0x0064, "genericArgsTypes"), 
+			new Symbol(0x0065, "genericArgsBindings"), 
+			new Symbol(0x0066, "genericArgsBinding"), 
+			new Symbol(0x0067, "list<name, __T0001>"), 
+			new Symbol(0x0068, "__V15"), 
+			new Symbol(0x0069, "list<genericArgsBinding, __T0001>"), 
+			new Symbol(0x006A, "__V17"), 
+			new Symbol(0x006B, "primaryExpression"), 
+			new Symbol(0x006C, "postfixExpression"), 
+			new Symbol(0x006D, "unaryExpression"), 
+			new Symbol(0x006E, "mulExpression"), 
+			new Symbol(0x006F, "addExpression"), 
+			new Symbol(0x0070, "shiftExpression"), 
+			new Symbol(0x0071, "equalityExpression"), 
+			new Symbol(0x0072, "bitAndExpression"), 
+			new Symbol(0x0073, "bitXorExpression"), 
+			new Symbol(0x0074, "bitOrExpression"), 
+			new Symbol(0x0075, "andExpression"), 
+			new Symbol(0x0076, "orExpression"), 
+			new Symbol(0x0077, "conditionalExpression"), 
+			new Symbol(0x0078, "withoutBlockExpression"), 
+			new Symbol(0x0079, "expression"), 
+			new Symbol(0x007A, "withBlockExpression"), 
+			new Symbol(0x007B, "blockExpression"), 
+			new Symbol(0x007C, "sloppyList<expression, __T0001>"), 
+			new Symbol(0x007D, "__V66"), 
+			new Symbol(0x007E, "unit"), 
+			new Symbol(0x007F, "unitItem"), 
+			new Symbol(0x0080, "namespace"), 
+			new Symbol(0x0081, "namespaceItem"), 
+			new Symbol(0x0082, "function"), 
+			new Symbol(0x0083, "__V131"), 
+			new Symbol(0x0085, "__V133"), 
+			new Symbol(0x0087, "__VAxiom") };
 		/// <summary>
 		/// The collection of virtuals matched by this parser
 		/// </summary>
@@ -325,39 +375,41 @@ namespace Mean.Language.Generated
 		/// so that virtual indices in the automaton can be used to retrieve the virtuals in this table
 		/// </remarks>
 		private static readonly Symbol[] virtuals = {
-			new Symbol(0x0035, "flist"), 
-			new Symbol(0x0036, "iselect"), 
-			new Symbol(0x0037, "tselect"), 
-			new Symbol(0x0038, "mselect"), 
-			new Symbol(0x0039, "negOp"), 
-			new Symbol(0x003A, "notOp"), 
-			new Symbol(0x003B, "mulOp"), 
-			new Symbol(0x003C, "divOp"), 
-			new Symbol(0x003D, "remOp"), 
-			new Symbol(0x003E, "modOp"), 
-			new Symbol(0x003F, "addOp"), 
-			new Symbol(0x0040, "subOp"), 
-			new Symbol(0x0041, "shlOp"), 
-			new Symbol(0x0042, "shrOp"), 
-			new Symbol(0x0043, "eqOp"), 
-			new Symbol(0x0044, "neOp"), 
-			new Symbol(0x0045, "ltOp"), 
-			new Symbol(0x0046, "ltleOp"), 
-			new Symbol(0x0047, "ltltOp"), 
-			new Symbol(0x0048, "leOp"), 
-			new Symbol(0x0049, "leleOp"), 
-			new Symbol(0x004A, "leltOp"), 
-			new Symbol(0x004B, "gtOp"), 
-			new Symbol(0x004C, "gtgeOp"), 
-			new Symbol(0x004D, "gtgtOp"), 
-			new Symbol(0x004E, "geOp"), 
-			new Symbol(0x004F, "gegeOp"), 
-			new Symbol(0x0050, "gegtOp"), 
-			new Symbol(0x0051, "andOp"), 
-			new Symbol(0x0052, "xorOp"), 
-			new Symbol(0x0053, "orOp"), 
-			new Symbol(0x0054, "andThenOp"), 
-			new Symbol(0x0055, "orElseOp") };
+			new Symbol(0x0037, "flist"), 
+			new Symbol(0x0038, "iselect"), 
+			new Symbol(0x0039, "tselect"), 
+			new Symbol(0x003A, "mselect"), 
+			new Symbol(0x003B, "negOp"), 
+			new Symbol(0x003C, "posOp"), 
+			new Symbol(0x003D, "notOp"), 
+			new Symbol(0x003E, "mulOp"), 
+			new Symbol(0x003F, "divOp"), 
+			new Symbol(0x0040, "remOp"), 
+			new Symbol(0x0041, "modOp"), 
+			new Symbol(0x0042, "addOp"), 
+			new Symbol(0x0043, "subOp"), 
+			new Symbol(0x0044, "shlOp"), 
+			new Symbol(0x0045, "shrOp"), 
+			new Symbol(0x0046, "eqOp"), 
+			new Symbol(0x0047, "neOp"), 
+			new Symbol(0x0048, "ltOp"), 
+			new Symbol(0x0049, "ltleOp"), 
+			new Symbol(0x004A, "ltltOp"), 
+			new Symbol(0x004B, "leOp"), 
+			new Symbol(0x004C, "leleOp"), 
+			new Symbol(0x004D, "leltOp"), 
+			new Symbol(0x004E, "gtOp"), 
+			new Symbol(0x004F, "gtgeOp"), 
+			new Symbol(0x0050, "gtgtOp"), 
+			new Symbol(0x0051, "geOp"), 
+			new Symbol(0x0052, "gegeOp"), 
+			new Symbol(0x0053, "gegtOp"), 
+			new Symbol(0x0054, "andOp"), 
+			new Symbol(0x0055, "xorOp"), 
+			new Symbol(0x0056, "orOp"), 
+			new Symbol(0x0057, "andThenOp"), 
+			new Symbol(0x0058, "orElseOp"), 
+			new Symbol(0x0059, "iff") };
 		/// <summary>
 		/// Initializes a new instance of the parser
 		/// </summary>
@@ -369,10 +421,6 @@ namespace Mean.Language.Generated
 		/// </summary>
 		public class Visitor
 		{
-			public virtual void OnTerminalNewLine(ASTNode node) {}
-			public virtual void OnTerminalWhiteSpace(ASTNode node) {}
-			public virtual void OnTerminalCommentLine(ASTNode node) {}
-			public virtual void OnTerminalCommentBlock(ASTNode node) {}
 			public virtual void OnTerminalSeparator(ASTNode node) {}
 			public virtual void OnTerminalIdentifier(ASTNode node) {}
 			public virtual void OnTerminalIntegerLiteral(ASTNode node) {}
@@ -380,6 +428,7 @@ namespace Mean.Language.Generated
 			public virtual void OnTerminalBoolLiteral(ASTNode node) {}
 			public virtual void OnVariableIdentifier(ASTNode node) {}
 			public virtual void OnVariableIntegerLiteral(ASTNode node) {}
+			public virtual void OnVariableTupleIndex(ASTNode node) {}
 			public virtual void OnVariableFloatLiteral(ASTNode node) {}
 			public virtual void OnVariableNumberLiteral(ASTNode node) {}
 			public virtual void OnVariableBoolLiteral(ASTNode node) {}
@@ -404,15 +453,23 @@ namespace Mean.Language.Generated
 			public virtual void OnVariableBitOrExpression(ASTNode node) {}
 			public virtual void OnVariableAndExpression(ASTNode node) {}
 			public virtual void OnVariableOrExpression(ASTNode node) {}
+			public virtual void OnVariableConditionalExpression(ASTNode node) {}
 			public virtual void OnVariableWithoutBlockExpression(ASTNode node) {}
-			public virtual void OnVariableWithBlockExpression(ASTNode node) {}
 			public virtual void OnVariableExpression(ASTNode node) {}
+			public virtual void OnVariableWithBlockExpression(ASTNode node) {}
+			public virtual void OnVariableBlockExpression(ASTNode node) {}
 			public virtual void OnVariableSloppyListExpressionT0001(ASTNode node) {}
+			public virtual void OnVariableUnit(ASTNode node) {}
+			public virtual void OnVariableUnitItem(ASTNode node) {}
+			public virtual void OnVariableNamespace(ASTNode node) {}
+			public virtual void OnVariableNamespaceItem(ASTNode node) {}
+			public virtual void OnVariableFunction(ASTNode node) {}
 			public virtual void OnVirtualFlist(ASTNode node) {}
 			public virtual void OnVirtualIselect(ASTNode node) {}
 			public virtual void OnVirtualTselect(ASTNode node) {}
 			public virtual void OnVirtualMselect(ASTNode node) {}
 			public virtual void OnVirtualNegOp(ASTNode node) {}
+			public virtual void OnVirtualPosOp(ASTNode node) {}
 			public virtual void OnVirtualNotOp(ASTNode node) {}
 			public virtual void OnVirtualMulOp(ASTNode node) {}
 			public virtual void OnVirtualDivOp(ASTNode node) {}
@@ -441,6 +498,7 @@ namespace Mean.Language.Generated
 			public virtual void OnVirtualOrOp(ASTNode node) {}
 			public virtual void OnVirtualAndThenOp(ASTNode node) {}
 			public virtual void OnVirtualOrElseOp(ASTNode node) {}
+			public virtual void OnVirtualIff(ASTNode node) {}
 		}
 
 		/// <summary>
@@ -460,78 +518,84 @@ namespace Mean.Language.Generated
 				VisitASTNode(node.Children[i], visitor);
 			switch(node.Symbol.ID)
 			{
-				case 0x0003: visitor.OnTerminalNewLine(node); break;
-				case 0x0004: visitor.OnTerminalWhiteSpace(node); break;
-				case 0x0005: visitor.OnTerminalCommentLine(node); break;
-				case 0x0006: visitor.OnTerminalCommentBlock(node); break;
 				case 0x0007: visitor.OnTerminalSeparator(node); break;
 				case 0x0014: visitor.OnTerminalIdentifier(node); break;
 				case 0x0015: visitor.OnTerminalIntegerLiteral(node); break;
 				case 0x0016: visitor.OnTerminalFloatLiteral(node); break;
 				case 0x0017: visitor.OnTerminalBoolLiteral(node); break;
-				case 0x0056: visitor.OnVariableIdentifier(node); break;
-				case 0x0057: visitor.OnVariableIntegerLiteral(node); break;
-				case 0x0058: visitor.OnVariableFloatLiteral(node); break;
-				case 0x0059: visitor.OnVariableNumberLiteral(node); break;
-				case 0x005A: visitor.OnVariableBoolLiteral(node); break;
-				case 0x005B: visitor.OnVariableLiteral(node); break;
-				case 0x005C: visitor.OnVariableType(node); break;
-				case 0x005D: visitor.OnVariableName(node); break;
-				case 0x005E: visitor.OnVariableGenericArgs(node); break;
-				case 0x005F: visitor.OnVariableGenericArgsTypes(node); break;
-				case 0x0060: visitor.OnVariableGenericArgsBindings(node); break;
-				case 0x0061: visitor.OnVariableGenericArgsBinding(node); break;
-				case 0x0062: visitor.OnVariableListNameT0001(node); break;
-				case 0x0064: visitor.OnVariableListGenericArgsBindingT0001(node); break;
-				case 0x0066: visitor.OnVariablePrimaryExpression(node); break;
-				case 0x0067: visitor.OnVariablePostfixExpression(node); break;
-				case 0x0068: visitor.OnVariableUnaryExpression(node); break;
-				case 0x0069: visitor.OnVariableMulExpression(node); break;
-				case 0x006A: visitor.OnVariableAddExpression(node); break;
-				case 0x006B: visitor.OnVariableShiftExpression(node); break;
-				case 0x006C: visitor.OnVariableEqualityExpression(node); break;
-				case 0x006D: visitor.OnVariableBitAndExpression(node); break;
-				case 0x006E: visitor.OnVariableBitXorExpression(node); break;
-				case 0x006F: visitor.OnVariableBitOrExpression(node); break;
-				case 0x0070: visitor.OnVariableAndExpression(node); break;
-				case 0x0071: visitor.OnVariableOrExpression(node); break;
-				case 0x0072: visitor.OnVariableWithoutBlockExpression(node); break;
-				case 0x0073: visitor.OnVariableWithBlockExpression(node); break;
-				case 0x0074: visitor.OnVariableExpression(node); break;
-				case 0x0075: visitor.OnVariableSloppyListExpressionT0001(node); break;
-				case 0x0035: visitor.OnVirtualFlist(node); break;
-				case 0x0036: visitor.OnVirtualIselect(node); break;
-				case 0x0037: visitor.OnVirtualTselect(node); break;
-				case 0x0038: visitor.OnVirtualMselect(node); break;
-				case 0x0039: visitor.OnVirtualNegOp(node); break;
-				case 0x003A: visitor.OnVirtualNotOp(node); break;
-				case 0x003B: visitor.OnVirtualMulOp(node); break;
-				case 0x003C: visitor.OnVirtualDivOp(node); break;
-				case 0x003D: visitor.OnVirtualRemOp(node); break;
-				case 0x003E: visitor.OnVirtualModOp(node); break;
-				case 0x003F: visitor.OnVirtualAddOp(node); break;
-				case 0x0040: visitor.OnVirtualSubOp(node); break;
-				case 0x0041: visitor.OnVirtualShlOp(node); break;
-				case 0x0042: visitor.OnVirtualShrOp(node); break;
-				case 0x0043: visitor.OnVirtualEqOp(node); break;
-				case 0x0044: visitor.OnVirtualNeOp(node); break;
-				case 0x0045: visitor.OnVirtualLtOp(node); break;
-				case 0x0046: visitor.OnVirtualLtleOp(node); break;
-				case 0x0047: visitor.OnVirtualLtltOp(node); break;
-				case 0x0048: visitor.OnVirtualLeOp(node); break;
-				case 0x0049: visitor.OnVirtualLeleOp(node); break;
-				case 0x004A: visitor.OnVirtualLeltOp(node); break;
-				case 0x004B: visitor.OnVirtualGtOp(node); break;
-				case 0x004C: visitor.OnVirtualGtgeOp(node); break;
-				case 0x004D: visitor.OnVirtualGtgtOp(node); break;
-				case 0x004E: visitor.OnVirtualGeOp(node); break;
-				case 0x004F: visitor.OnVirtualGegeOp(node); break;
-				case 0x0050: visitor.OnVirtualGegtOp(node); break;
-				case 0x0051: visitor.OnVirtualAndOp(node); break;
-				case 0x0052: visitor.OnVirtualXorOp(node); break;
-				case 0x0053: visitor.OnVirtualOrOp(node); break;
-				case 0x0054: visitor.OnVirtualAndThenOp(node); break;
-				case 0x0055: visitor.OnVirtualOrElseOp(node); break;
+				case 0x005A: visitor.OnVariableIdentifier(node); break;
+				case 0x005B: visitor.OnVariableIntegerLiteral(node); break;
+				case 0x005C: visitor.OnVariableTupleIndex(node); break;
+				case 0x005D: visitor.OnVariableFloatLiteral(node); break;
+				case 0x005E: visitor.OnVariableNumberLiteral(node); break;
+				case 0x005F: visitor.OnVariableBoolLiteral(node); break;
+				case 0x0060: visitor.OnVariableLiteral(node); break;
+				case 0x0061: visitor.OnVariableType(node); break;
+				case 0x0062: visitor.OnVariableName(node); break;
+				case 0x0063: visitor.OnVariableGenericArgs(node); break;
+				case 0x0064: visitor.OnVariableGenericArgsTypes(node); break;
+				case 0x0065: visitor.OnVariableGenericArgsBindings(node); break;
+				case 0x0066: visitor.OnVariableGenericArgsBinding(node); break;
+				case 0x0067: visitor.OnVariableListNameT0001(node); break;
+				case 0x0069: visitor.OnVariableListGenericArgsBindingT0001(node); break;
+				case 0x006B: visitor.OnVariablePrimaryExpression(node); break;
+				case 0x006C: visitor.OnVariablePostfixExpression(node); break;
+				case 0x006D: visitor.OnVariableUnaryExpression(node); break;
+				case 0x006E: visitor.OnVariableMulExpression(node); break;
+				case 0x006F: visitor.OnVariableAddExpression(node); break;
+				case 0x0070: visitor.OnVariableShiftExpression(node); break;
+				case 0x0071: visitor.OnVariableEqualityExpression(node); break;
+				case 0x0072: visitor.OnVariableBitAndExpression(node); break;
+				case 0x0073: visitor.OnVariableBitXorExpression(node); break;
+				case 0x0074: visitor.OnVariableBitOrExpression(node); break;
+				case 0x0075: visitor.OnVariableAndExpression(node); break;
+				case 0x0076: visitor.OnVariableOrExpression(node); break;
+				case 0x0077: visitor.OnVariableConditionalExpression(node); break;
+				case 0x0078: visitor.OnVariableWithoutBlockExpression(node); break;
+				case 0x0079: visitor.OnVariableExpression(node); break;
+				case 0x007A: visitor.OnVariableWithBlockExpression(node); break;
+				case 0x007B: visitor.OnVariableBlockExpression(node); break;
+				case 0x007C: visitor.OnVariableSloppyListExpressionT0001(node); break;
+				case 0x007E: visitor.OnVariableUnit(node); break;
+				case 0x007F: visitor.OnVariableUnitItem(node); break;
+				case 0x0080: visitor.OnVariableNamespace(node); break;
+				case 0x0081: visitor.OnVariableNamespaceItem(node); break;
+				case 0x0082: visitor.OnVariableFunction(node); break;
+				case 0x0037: visitor.OnVirtualFlist(node); break;
+				case 0x0038: visitor.OnVirtualIselect(node); break;
+				case 0x0039: visitor.OnVirtualTselect(node); break;
+				case 0x003A: visitor.OnVirtualMselect(node); break;
+				case 0x003B: visitor.OnVirtualNegOp(node); break;
+				case 0x003C: visitor.OnVirtualPosOp(node); break;
+				case 0x003D: visitor.OnVirtualNotOp(node); break;
+				case 0x003E: visitor.OnVirtualMulOp(node); break;
+				case 0x003F: visitor.OnVirtualDivOp(node); break;
+				case 0x0040: visitor.OnVirtualRemOp(node); break;
+				case 0x0041: visitor.OnVirtualModOp(node); break;
+				case 0x0042: visitor.OnVirtualAddOp(node); break;
+				case 0x0043: visitor.OnVirtualSubOp(node); break;
+				case 0x0044: visitor.OnVirtualShlOp(node); break;
+				case 0x0045: visitor.OnVirtualShrOp(node); break;
+				case 0x0046: visitor.OnVirtualEqOp(node); break;
+				case 0x0047: visitor.OnVirtualNeOp(node); break;
+				case 0x0048: visitor.OnVirtualLtOp(node); break;
+				case 0x0049: visitor.OnVirtualLtleOp(node); break;
+				case 0x004A: visitor.OnVirtualLtltOp(node); break;
+				case 0x004B: visitor.OnVirtualLeOp(node); break;
+				case 0x004C: visitor.OnVirtualLeleOp(node); break;
+				case 0x004D: visitor.OnVirtualLeltOp(node); break;
+				case 0x004E: visitor.OnVirtualGtOp(node); break;
+				case 0x004F: visitor.OnVirtualGtgeOp(node); break;
+				case 0x0050: visitor.OnVirtualGtgtOp(node); break;
+				case 0x0051: visitor.OnVirtualGeOp(node); break;
+				case 0x0052: visitor.OnVirtualGegeOp(node); break;
+				case 0x0053: visitor.OnVirtualGegtOp(node); break;
+				case 0x0054: visitor.OnVirtualAndOp(node); break;
+				case 0x0055: visitor.OnVirtualXorOp(node); break;
+				case 0x0056: visitor.OnVirtualOrOp(node); break;
+				case 0x0057: visitor.OnVirtualAndThenOp(node); break;
+				case 0x0058: visitor.OnVirtualOrElseOp(node); break;
+				case 0x0059: visitor.OnVirtualIff(node); break;
 			}
 		}
 	}

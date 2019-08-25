@@ -1,12 +1,12 @@
 Name: Mean
 Options:
-	Axiom = "expression"
+	Axiom = "unit"
 	Separator = "SEPARATOR"
-	CompilationMode = "Debug"
 	ParserType = "RNGLR"
-	Runtime = "Net"
+	CompilationMode = "Debug"
 	Namespace = "Mean.Language.Generated"
 	AccessModifier = "Internal"
+	Runtime = "Net"
 Terminals:
 	__T0000 = <
 	__T0001 = ,
@@ -18,12 +18,12 @@ Terminals:
 	__T0007 = ]
 	__T0008 = .
 	__T0009 = -
-	__T000A = !
-	__T000B = *
-	__T000C = /
-	__T000D = %
-	__T000E = mod
-	__T000F = +
+	__T000A = +
+	__T000B = !
+	__T000C = *
+	__T000D = /
+	__T000E = %
+	__T000F = mod
 	__T0010 = shl
 	__T0011 = shr
 	__T0012 = ==
@@ -35,25 +35,29 @@ Terminals:
 	__T0018 = |
 	__T0019 = &&
 	__T001A = ||
-	__T001B = {
-	__T001C = }
+	__T001B = ?
+	__T001C = :
+	__T001D = {
+	__T001E = }
+	__T001F = namespace
+	__T0020 = fun
 	BOOL_LITERAL = BOOL_LITERAL
-	COMMENT_BLOCK = COMMENT_BLOCK
-	COMMENT_LINE = COMMENT_LINE
 	FLOAT_LITERAL = FLOAT_LITERAL
 	IDENTIFIER = IDENTIFIER
 	INTEGER_LITERAL = INTEGER_LITERAL
-	NEW_LINE = NEW_LINE
 	SEPARATOR = SEPARATOR
-	WHITE_SPACE = WHITE_SPACE
 Rules:
+	__V131 -> unitItem
+	__V131 -> __V131 unitItem
+	__V133 -> namespaceItem
+	__V133 -> __V133 namespaceItem
 	__V15 -> ,! name
 	__V15 -> __V15 ,! name
 	__V17 -> ,! genericArgsBinding
 	__V17 -> __V17 ,! genericArgsBinding
-	__V58 -> ,! expression
-	__V58 -> __V58 ,! expression
-	__VAxiom -> expression^ $!
+	__V66 -> ,! expression
+	__V66 -> __V66 ,! expression
+	__VAxiom -> unit^ $!
 	addExpression -> "addOp"^ addExpression +! mulExpression
 	addExpression -> "subOp"^ addExpression -! mulExpression
 	addExpression -> mulExpression^
@@ -65,7 +69,10 @@ Rules:
 	bitOrExpression -> bitXorExpression^
 	bitXorExpression -> "xorOp"^ bitXorExpression ^! bitAndExpression
 	bitXorExpression -> bitAndExpression^
+	blockExpression -> { expression^ }
 	boolLiteral -> BOOL_LITERAL
+	conditionalExpression -> "iff" conditionalExpression ?! expression :! expression
+	conditionalExpression -> orExpression^
 	equalityExpression -> "eqOp"^ shiftExpression ==! shiftExpression
 	equalityExpression -> "neOp"^ shiftExpression !=! shiftExpression
 	equalityExpression -> "ltOp"^ shiftExpression <! shiftExpression
@@ -84,6 +91,7 @@ Rules:
 	expression -> withBlockExpression^
 	expression -> withoutBlockExpression^
 	floatLiteral -> FLOAT_LITERAL
+	function -> fun identifier
 	genericArgs -> <! genericArgsTypes >!
 	genericArgs -> <! genericArgsTypes ,! >!
 	genericArgs -> <! genericArgsTypes genericArgsBindings >!
@@ -94,10 +102,8 @@ Rules:
 	integerLiteral -> INTEGER_LITERAL
 	list<genericArgsBinding, __T0001> -> genericArgsBinding^
 	list<genericArgsBinding, __T0001> -> genericArgsBinding^ __V17^
-	list<genericArgsBinding, __T0001> ->
 	list<name, __T0001> -> name^
 	list<name, __T0001> -> name^ __V15^
-	list<name, __T0001> ->
 	literal -> numberLiteral^
 	literal -> boolLiteral^
 	mulExpression -> "mulOp"^ mulExpression *! unaryExpression
@@ -107,13 +113,17 @@ Rules:
 	mulExpression -> unaryExpression^
 	name -> identifier
 	name -> identifier genericArgs
+	namespace -> namespace! identifier {! }!
+	namespace -> namespace! identifier {! __V133 }!
+	namespaceItem -> function
 	numberLiteral -> integerLiteral^
 	numberLiteral -> floatLiteral^
 	orExpression -> "orElseOp"^ orExpression ||^ andExpression
 	orExpression -> andExpression^
-	postfixExpression -> "flist"^ postfixExpression ( sloppyList<expression, __T0001> )
+	postfixExpression -> "flist"^ postfixExpression (! )!
+	postfixExpression -> "flist"^ postfixExpression (! sloppyList<expression, __T0001> )!
 	postfixExpression -> "iselect"^ postfixExpression [! expression ]!
-	postfixExpression -> "tselect"^ postfixExpression .! integerLiteral
+	postfixExpression -> "tselect"^ postfixExpression .! tupleIndex
 	postfixExpression -> "mselect"^ postfixExpression .! name
 	postfixExpression -> primaryExpression^
 	primaryExpression -> literal^
@@ -122,14 +132,18 @@ Rules:
 	shiftExpression -> "shlOp"^ shiftExpression shl! addExpression
 	shiftExpression -> "shrOp"^ shiftExpression shr! addExpression
 	shiftExpression -> addExpression^
-	sloppyList<expression, __T0001> -> expression
-	sloppyList<expression, __T0001> -> expression ,!
-	sloppyList<expression, __T0001> -> expression __V58
-	sloppyList<expression, __T0001> -> expression __V58 ,!
-	sloppyList<expression, __T0001> ->
+	sloppyList<expression, __T0001> -> expression^
+	sloppyList<expression, __T0001> -> expression^ ,!
+	sloppyList<expression, __T0001> -> expression^ __V66^
+	sloppyList<expression, __T0001> -> expression^ __V66^ ,!
+	tupleIndex -> INTEGER_LITERAL
 	type -> IDENTIFIER
 	unaryExpression -> "negOp"^ -! postfixExpression
+	unaryExpression -> "posOp"^ +! postfixExpression
 	unaryExpression -> "notOp"^ !! postfixExpression
 	unaryExpression -> postfixExpression^
-	withBlockExpression -> {! expression^ }!
-	withoutBlockExpression -> orExpression^
+	unit ->
+	unit -> __V131
+	unitItem -> namespace^
+	withBlockExpression -> blockExpression
+	withoutBlockExpression -> conditionalExpression^

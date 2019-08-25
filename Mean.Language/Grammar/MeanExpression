@@ -1,11 +1,20 @@
 ﻿grammar MeanExpression:
+    MeanSpacing,
     MeanLiteral,
     MeanIdentifier,
     MeanType,
     MeanGenericArgs,
     MeanTools
 {
-    options {}
+    options 
+    {
+        Axiom       = "expression"; // the top variable for this grammar
+        Separator   = "SEPARATOR";  // the terminal that represent white space
+        ParserType  = "RNGLR";
+        CompilationMode = "Debug";
+        Namespace = "Mean.Language.Generated";
+        AccessModifier = "Internal";
+    }
     
     terminals {}
   
@@ -18,17 +27,18 @@
             ;
 
         postfixExpression
-            ->  "flist"^ postfixExpression '(' sloppyList<expression, ','> ')'
+            ->  "flist"^ postfixExpression '('! sloppyList<expression, ','>? ')'!
             |   "iselect"^ postfixExpression '['! expression ']'!
-            |   "tselect"^ postfixExpression '.'! integerLiteral
+            |   "tselect"^ postfixExpression '.'! tupleIndex
             |   "mselect"^ postfixExpression '.'! name
             |   primaryExpression^
             ;
 
         unaryExpression
-            ->  "negOp"^ '-'! postfixExpression
-            |   "notOp"^ '!'! postfixExpression
-            |   postfixExpression^
+            -> "negOp"^ '-'! postfixExpression
+            |  "posOp"^ '+'! postfixExpression
+            |  "notOp"^ '!'! postfixExpression
+            |  postfixExpression^
             ;
 
         mulExpression
@@ -94,17 +104,26 @@
             |   andExpression^
             ;
 
-        withoutBlockExpression
-            ->  orExpression^
+        conditionalExpression
+            -> "iff" conditionalExpression '?'! expression ':'! expression
+            |  orExpression^
             ;
 
-        withBlockExpression
-            ->  '{'! expression^ '}'!
+        withoutBlockExpression
+            ->  conditionalExpression^
             ;
 
         expression
             ->  withBlockExpression^
             |   withoutBlockExpression^
+            ;
+
+        withBlockExpression
+            ->  blockExpression
+            ;
+
+        blockExpression
+            -> '{' expression^ '}'
             ;
     }
 }
@@ -121,16 +140,16 @@ grammar MeanGenericArgs:
     rules
     {
         name
-            ->  identifier genericArgs?
+            -> identifier genericArgs?
             ;
 
         genericArgs
-            ->  '<'! genericArgsTypes (','?)! '>'!
-            |   '<'! genericArgsTypes genericArgsBindings? '>'!
+            -> '<'! genericArgsTypes (','?)! '>'!
+            |  '<'! genericArgsTypes genericArgsBindings? '>'!
             ;
 
         genericArgsTypes
-            ->  list<name,','>^
+            -> list<name,','>^
             ;
 
         genericArgsBindings

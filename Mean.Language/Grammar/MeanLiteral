@@ -20,7 +20,7 @@
 
         fragment DEC_LITERAL
             -> '0'
-            |  NONZERO_DEC_DIGIT (DEC_DIGIT '_')*
+            |  [1-9] (DEC_DIGIT | '_')*
             ;
 
         fragment HEX_LITERAL
@@ -59,6 +59,10 @@
     {
         integerLiteral
             ->  INTEGER_LITERAL
+            ;
+
+        tupleIndex
+            -> INTEGER_LITERAL
             ;
 
         floatLiteral

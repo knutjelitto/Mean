@@ -2,7 +2,7 @@
 {
     options
     {
-        Axiom       = "expression"; // the top variable for this grammar
+        Axiom       = "unit"; // the top variable for this grammar
         Separator   = "SEPARATOR";  // the terminal that represent white space
 
         CompilationMode = "Debug";
@@ -17,17 +17,24 @@
   
     rules
     {
-        // Tools
-        
-        sloppyList<item, separator>
-            ->  item (separator item)* separator?
-            |
+        unit
+            -> unitItem*
             ;
 
-        list<item, separator>
-            ->  item (separator item)*
-            |
+        unitItem
+            -> namespace^
             ;
 
+        namespace
+            -> 'namespace'! identifier '{'! namespaceItem* '}'!
+            ;
+
+        namespaceItem
+            -> function
+            ;
+
+        function
+            -> 'fun' identifier
+            ;
     }
 }
