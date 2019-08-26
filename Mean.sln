@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mean.Language.Tests", "Mean
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mean.Hime.Tweak", "Mean.Hime.Tweak\Mean.Hime.Tweak.csproj", "{74BE2D2D-97D9-4300-9D43-EAA6DDEECB7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mean.Tree", "Mean.Tree\Mean.Tree.csproj", "{8F76270C-BA46-44BA-9D9D-A36985B746D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mean.Tree", "Mean.Tree\Mean.Tree.csproj", "{A6084829-5C17-4EE4-A169-DD3F56CD51C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +54,10 @@ Global
 		{74BE2D2D-97D9-4300-9D43-EAA6DDEECB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74BE2D2D-97D9-4300-9D43-EAA6DDEECB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74BE2D2D-97D9-4300-9D43-EAA6DDEECB7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F76270C-BA46-44BA-9D9D-A36985B746D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F76270C-BA46-44BA-9D9D-A36985B746D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F76270C-BA46-44BA-9D9D-A36985B746D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F76270C-BA46-44BA-9D9D-A36985B746D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6084829-5C17-4EE4-A169-DD3F56CD51C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6084829-5C17-4EE4-A169-DD3F56CD51C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6084829-5C17-4EE4-A169-DD3F56CD51C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6084829-5C17-4EE4-A169-DD3F56CD51C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

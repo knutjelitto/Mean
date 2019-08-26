@@ -1,10 +1,10 @@
-﻿grammar MeanExpression:
-    MeanSpacing,
-    MeanLiteral,
-    MeanIdentifier,
-    MeanType,
-    MeanGenericArgs,
-    MeanTools
+﻿grammar MeanExpression
+    : MeanSpacing
+    , MeanTools
+    , MeanLiteral
+    , MeanIdentifier
+    , MeanType
+    , MeanGenericArgs
 {
     options 
     {

@@ -33,23 +33,11 @@
     <None Remove="sources\std\alias\alias.cl" />
     <None Remove="sources\std\ops\ops.cl" />
     <None Remove="sources\std\std.cl" />
+    <None Remove="sources\test.mean" />
     <None Remove="support.c" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="sources\boot.cl" />
-    <EmbeddedResource Include="sources\boot-2.cl" />
-    <EmbeddedResource Include="sources\boot-1.cl" />
-    <EmbeddedResource Include="sources\complex0.cl" />
-    <EmbeddedResource Include="sources\complex.cl" />
-    <EmbeddedResource Include="sources\checker-1.cl" />
-    <EmbeddedResource Include="sources\checker-for-f64.cl" />
-    <EmbeddedResource Include="sources\checker-binops.cl" />
-    <EmbeddedResource Include="sources\gen-test.c" />
-    <EmbeddedResource Include="sources\checker-string.cl" />
-    <EmbeddedResource Include="sources\checker-if-3.cl" />
-    <EmbeddedResource Include="sources\checker-if-2.cl" />
-    <EmbeddedResource Include="sources\checker-if-1.cl" />
     <EmbeddedResource Include="sources\ccore\CoreConsole.c" />
     <EmbeddedResource Include="sources\ccore\CoreConsole.h" />
     <EmbeddedResource Include="sources\ccore\CoreObject.c" />
@@ -58,13 +46,11 @@
     <EmbeddedResource Include="sources\ccore\CoreString.h" />
     <EmbeddedResource Include="sources\ccore\Entry.c" />
     <EmbeddedResource Include="sources\ccore\Tools.h" />
-    <EmbeddedResource Include="sources\checker-for-i64.cl" />
-    <EmbeddedResource Include="sources\mandelx.cl" />
     <EmbeddedResource Include="sources\std\alias\alias.cl" />
     <EmbeddedResource Include="sources\std\std.cl" />
     <EmbeddedResource Include="sources\std\ops\ops.cl" />
-    <EmbeddedResource Include="support.c" />
-    <EmbeddedResource Include="sources\mandel.cl" />
+    <EmbeddedResource Include="sources\ccore\support.c" />
+    <EmbeddedResource Include="sources\test.mean" />
   </ItemGroup>
 
   <ItemGroup>

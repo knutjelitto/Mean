@@ -1,5 +1,7 @@
 ﻿using Hime.Redist;
 using Mean.Language.Generated;
+using Mean.Maker.Builders;
+using System.IO;
 
 namespace Mean.Language
 {
@@ -13,6 +15,11 @@ namespace Mean.Language
             var result = parser.Parse();
 
             return result;
+        }
+
+        public static ParseResult Unit(FileRef file)
+        {
+            return Unit(File.ReadAllText(file));
         }
 
         public static ParseResult Unit(string source)

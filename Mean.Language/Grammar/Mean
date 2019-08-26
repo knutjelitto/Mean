@@ -1,4 +1,7 @@
-﻿grammar Mean : MeanSpacing, MeanExpression
+﻿grammar Mean 
+    : MeanSpacing
+    , MeanGenerics
+    , MeanExpression
 {
     options
     {
@@ -10,7 +13,7 @@
         ParserType = "RNGLR";
         Runtime = "Net";
         Namespace = "Mean.Language.Generated";
-        AccessModifier = "Internal";
+        AccessModifier = "Public";
     }
     
     terminals { }
@@ -26,15 +29,139 @@
             ;
 
         namespace
-            -> 'namespace'! identifier '{'! namespaceItem* '}'!
+            -> 'namespace'! identifier '{'! namespaceItems '}'!
+            ;
+
+        namespaceItems
+            -> namespaceItem*
             ;
 
         namespaceItem
-            -> function
+            -> namespace^
+            |  definedFunction^
+            |  trait^
             ;
 
-        function
-            -> 'fun' identifier
+        definedFunction
+            -> 'function' functionKernel '{' maybeFunctionItems '}'
             ;
+
+        declaredFunction
+            -> 'function' functionKernel ';'
+            ;
+
+        definedMethod
+            -> 'method' functionKernel '{' maybeFunctionItems '}'
+            ;
+
+        declaredMethod
+            -> 'method' functionKernel ';'
+            ;
+
+        functionKernel
+            -> identifier maybeGenericParameters maybeWhere '(' maybeFunParameters ')' maybeTypeAnnotation
+            ;
+
+        maybeFunParameters
+            -> maybeFunParameters funParameter
+            | funParameter
+            |
+            ;
+
+        funParameter
+            -> identifier typeAnnotation
+            ;
+
+        maybeFunctionItems
+            -> maybeFunctionItems functionItem
+            |  functionItem
+            |
+            ;
+
+        functionItem
+            -> definedFunction^
+            |  trait^
+            |  typeAlias^
+            ;
+
+        typeAlias
+            -> 'type' identifier '=' type ';'
+            ;
+
+        trait
+            -> 'trait'! identifier maybeGenericParameters maybeWhere '{'! maybeTraitItems '}'!
+            ;
+
+        maybeTraitItems
+            -> traitItem*
+            ;
+
+        traitItem
+            -> definedFunction
+            |  declaredFunction
+            |  definedMethod
+            |  declaredMethod
+            |  traitOutputType
+            ;
+
+        traitOutputType
+            -> 'type' identifier maybeWhere maybeTypeAnnotation ';'
+            ;
+
+        maybeTypeAnnotation
+            -> typeAnnotation
+            |
+            ;
+
+        typeAnnotation
+            -> ':' type
+            ;
+
+        maybeGenericParameters
+            -> genericParameters?
+            ;
+
+        genericParameters
+            -> '<'! genericNames ','! genericDefaults '>'!
+            |  '<'! genericNames '>'!
+            |  '<'! genericDefaults '>'
+            ;
+
+        genericNames
+            -> genericName (','! genericName)*
+            ;
+
+        genericName
+            -> identifier
+            ;
+
+        genericDefaults
+            -> genericDefault (','! genericDefaults)*
+            ;
+
+        genericDefault
+            -> identifier '=' type
+            ;
+
+        maybeWhere
+            -> where?
+            ;
+
+        where
+            -> 'where'
+            ;
+    }
+}
+
+grammar MeanGenerics
+    : MeanType
+    , MeanTools
+
+{
+    options {}
+    terminals {}
+
+    rules
+    {
     }
 }

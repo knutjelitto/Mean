@@ -57,30 +57,14 @@
   
     rules
     {
-        integerLiteral
-            ->  INTEGER_LITERAL
-            ;
-
         tupleIndex
             -> INTEGER_LITERAL
             ;
 
-        floatLiteral
-            ->  FLOAT_LITERAL
-            ;
-
-        numberLiteral
-            ->  integerLiteral^
-            |   floatLiteral^
-            ;
-
-        boolLiteral
-            -> BOOL_LITERAL
-            ;
-
         literal
-            ->  numberLiteral^
-            |   boolLiteral^
+            ->  INTEGER_LITERAL^
+            |   FLOAT_LITERAL
+            |   BOOL_LITERAL
             ;
     }
 }

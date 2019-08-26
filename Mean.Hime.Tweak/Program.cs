@@ -12,57 +12,62 @@ namespace Mean.Hime.Tweak
 
         static void Main(string[] args)
         {
-            var inputFile = args[0];
-            var outputFile = args[1];
-
             var program = new Program(args[0], args[1]);
+            program.Process();
         }
 
         public Program(string inputFile, string outputFile)
         {
             this.inputFile = inputFile;
             this.outputFile = outputFile;
-
-            Process();
         }
 
-        private void Process()
+        public void Process()
         {
             var inlines = File.ReadAllLines(inputFile);
             var outlines = new List<string>();
+            outlines.Add($"using System;");
+            outlines.Add($"using System.Collections.Generic;");
+            outlines.Add($"using System.Linq;");
             outlines.Add($"using Hime.Redist;");
             outlines.Add($"");
             outlines.Add($"namespace {Namespace(inlines)}");
             outlines.Add($"{{");
 
-            //outlines.Add($"\tinternal class {VisitorName()} : {ParserName()}.Visitor");
-            outlines.Add($"\tinternal class {VisitorName()}");
+            outlines.Add($"\tpublic abstract class {VisitorName()}");
             outlines.Add($"\t{{");
 
-            outlines.Add($"\t\tpublic void Visit(ParseResult result)");
+            outlines.Add($"\t\tprotected virtual void VisitNode(ASTNode node)");
             outlines.Add($"\t\t{{");
-            outlines.Add($"\t\t\tVisitASTNode(result.Root);");
+            outlines.Add($"\t\t\tVisitNode<bool>(node);");
             outlines.Add($"\t\t}}");
-
             outlines.Add($"");
 
-            outlines.Add($"\t\tprotected virtual void VisitASTNode(ASTNode node)");
+            outlines.Add($"\t\tprotected virtual T VisitNode<T>(ASTNode node)");
             outlines.Add($"\t\t{{");
             Switch(inlines, outlines);
             outlines.Add($"\t\t}}");
             outlines.Add($"");
 
-            outlines.Add($"\t\tprotected virtual void VisitASTChildren(ASTNode node)");
+            outlines.Add($"\t\tprotected virtual IEnumerable<object> VisitChildren(ASTNode node)");
             outlines.Add($"\t\t{{");
             outlines.Add($"\t\t\tfor (var i = 0; i < node.Children.Count; i++)");
             outlines.Add($"\t\t\t{{");
-            outlines.Add($"\t\t\t\tVisitASTNode(node.Children[i]);");
+            outlines.Add($"\t\t\t\tyield return VisitNode<object>(node.Children[i]);");
+            outlines.Add($"\t\t\t}}");
+            outlines.Add($"\t\t}}");
+
+            outlines.Add($"\t\tprotected virtual IEnumerable<T> VisitChildren<T>(ASTNode node)");
+            outlines.Add($"\t\t{{");
+            outlines.Add($"\t\t\tfor (var i = 0; i < node.Children.Count; i++)");
+            outlines.Add($"\t\t\t{{");
+            outlines.Add($"\t\t\t\tyield return VisitNode<T>(node.Children[i]);");
             outlines.Add($"\t\t\t}}");
             outlines.Add($"\t\t}}");
 
             outlines.Add($"");
 
-            Virtuals(inlines, outlines);
+            Virtuals(true, inlines, outlines);
 
             outlines.Add($"\t}}");
 
@@ -84,17 +89,24 @@ namespace Mean.Hime.Tweak
 
             for (; start < inlines.Count; ++start)
             {
-                var line = inlines[start].Replace("visitor.", string.Empty);
-
-                outlines.Add(line);
+                var line = inlines[start];
+                    
                 if (line == "\t\t\t}")
                 {
+                    outlines.Add("\t\t\t\tdefault:");
+                    outlines.Add("\t\t\t\t\tthrow new NotImplementedException();");
+                    outlines.Add(line);
                     break;
                 }
+
+                line = line.Replace("visitor.", "return (T)");
+                line = line.Replace(" break;", string.Empty);
+
+                outlines.Add(line);
             }
         }
 
-        private void Virtuals(IReadOnlyList<string> inlines, IList<string> outlines)
+        private void Virtuals(bool @void, IReadOnlyList<string> inlines, IList<string> outlines)
         {
             var start = 0;
             for (; start < inlines.Count; ++start)
@@ -124,10 +136,13 @@ namespace Mean.Hime.Tweak
         {
             line = line.Substring(1); // remove '\t'
             line = line.Replace(" {}", string.Empty);
+            line = line.Replace("public virtual void", "public virtual object");
             outlines.Add($"{line}");
+#if true
             outlines.Add($"\t\t{{");
-            outlines.Add($"\t\t\tVisitASTChildren(node);");
+            outlines.Add($"\t\t\treturn VisitChildren(node).FirstOrDefault();");
             outlines.Add($"\t\t}}");
+#endif
         }
 
         private string Namespace(IReadOnlyCollection<string> lines)

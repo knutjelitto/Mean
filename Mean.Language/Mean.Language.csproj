@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mean.Hime.Tweak\Mean.Hime.Tweak.csproj" />
+    <ProjectReference Include="..\Mean.Maker\Mean.Maker.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

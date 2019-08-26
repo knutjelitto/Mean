@@ -3,19 +3,18 @@ State 0:
 	Contexts:
 	Transitions:
 		On unit shift to 1
-		On __V131 shift to 2
+		On __V151 shift to 2
 		On unitItem shift to 3
 		On namespace shift to 4
 		On namespace shift to 5
 	Items:
 		[__VAxiom -> * unit $ ][ ε]
 		[unit -> * ][ $]
-		[unit -> * __V131 ][ $]
-		[__V131 -> * unitItem ][ $ namespace]
-		[__V131 -> * __V131 unitItem ][ $ namespace]
+		[unit -> * __V151 ][ $]
+		[__V151 -> * unitItem ][ $ namespace]
+		[__V151 -> * __V151 unitItem ][ $ namespace]
 		[unitItem -> * namespace ][ $]
-		[namespace -> * namespace identifier { } ][ $]
-		[namespace -> * namespace identifier { __V133 } ][ $]
+		[namespace -> * namespace identifier { namespaceItems } ][ $]
 	Conflicts:
 
 State 1:
@@ -33,18 +32,17 @@ State 2:
 		On namespace shift to 4
 		On namespace shift to 5
 	Items:
-		[unit -> __V131 * ][ $]
-		[__V131 -> __V131 * unitItem ][ $ namespace]
+		[unit -> __V151 * ][ $]
+		[__V151 -> __V151 * unitItem ][ $ namespace]
 		[unitItem -> * namespace ][ $ namespace]
-		[namespace -> * namespace identifier { } ][ $ namespace]
-		[namespace -> * namespace identifier { __V133 } ][ $ namespace]
+		[namespace -> * namespace identifier { namespaceItems } ][ $ namespace]
 	Conflicts:
 
 State 3:
 	Contexts:
 	Transitions:
 	Items:
-		[__V131 -> unitItem * ][ $ namespace]
+		[__V151 -> unitItem * ][ $ namespace]
 	Conflicts:
 
 State 4:
@@ -60,8 +58,7 @@ State 5:
 		On identifier shift to 8
 		On IDENTIFIER shift to 9
 	Items:
-		[namespace -> namespace * identifier { } ][ $ namespace]
-		[namespace -> namespace * identifier { __V133 } ][ $ namespace]
+		[namespace -> namespace * identifier { namespaceItems } ][ $ } namespace function trait]
 		[identifier -> * IDENTIFIER ][ {]
 	Conflicts:
 
@@ -76,7 +73,7 @@ State 7:
 	Contexts:
 	Transitions:
 	Items:
-		[__V131 -> __V131 unitItem * ][ $ namespace]
+		[__V151 -> __V151 unitItem * ][ $ namespace]
 	Conflicts:
 
 State 8:
@@ -84,96 +81,1102 @@ State 8:
 	Transitions:
 		On { shift to 10
 	Items:
-		[namespace -> namespace identifier * { } ][ $ namespace]
-		[namespace -> namespace identifier * { __V133 } ][ $ namespace]
+		[namespace -> namespace identifier * { namespaceItems } ][ $ } namespace function trait]
 	Conflicts:
 
 State 9:
 	Contexts:
 	Transitions:
 	Items:
-		[identifier -> IDENTIFIER * ][ { } fun]
+		[identifier -> IDENTIFIER * ][ < , > = ( : { ; where]
 	Conflicts:
 
 State 10:
 	Contexts:
 	Transitions:
-		On } shift to 11
-		On __V133 shift to 12
+		On namespaceItems shift to 11
+		On __V153 shift to 12
 		On namespaceItem shift to 13
-		On function shift to 14
-		On fun shift to 15
+		On namespace shift to 14
+		On definedFunction shift to 15
+		On trait shift to 16
+		On namespace shift to 5
+		On function shift to 17
+		On trait shift to 18
 	Items:
-		[namespace -> namespace identifier { * } ][ $ namespace]
-		[namespace -> namespace identifier { * __V133 } ][ $ namespace]
-		[__V133 -> * namespaceItem ][ } fun]
-		[__V133 -> * __V133 namespaceItem ][ } fun]
-		[namespaceItem -> * function ][ }]
-		[function -> * fun identifier ][ }]
+		[namespace -> namespace identifier { * namespaceItems } ][ $ } namespace function trait]
+		[namespaceItems -> * ][ }]
+		[namespaceItems -> * __V153 ][ }]
+		[__V153 -> * namespaceItem ][ } namespace function trait]
+		[__V153 -> * __V153 namespaceItem ][ } namespace function trait]
+		[namespaceItem -> * namespace ][ }]
+		[namespaceItem -> * definedFunction ][ }]
+		[namespaceItem -> * trait ][ }]
+		[namespace -> * namespace identifier { namespaceItems } ][ }]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ }]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ }]
 	Conflicts:
 
 State 11:
 	Contexts:
 	Transitions:
+		On } shift to 19
 	Items:
-		[namespace -> namespace identifier { } * ][ $ namespace]
+		[namespace -> namespace identifier { namespaceItems * } ][ $ } namespace function trait]
 	Conflicts:
 
 State 12:
 	Contexts:
 	Transitions:
-		On } shift to 16
-		On namespaceItem shift to 17
-		On function shift to 14
-		On fun shift to 15
+		On namespaceItem shift to 20
+		On namespace shift to 14
+		On definedFunction shift to 15
+		On trait shift to 16
+		On namespace shift to 5
+		On function shift to 17
+		On trait shift to 18
 	Items:
-		[namespace -> namespace identifier { __V133 * } ][ $ namespace]
-		[__V133 -> __V133 * namespaceItem ][ } fun]
-		[namespaceItem -> * function ][ } fun]
-		[function -> * fun identifier ][ } fun]
+		[namespaceItems -> __V153 * ][ }]
+		[__V153 -> __V153 * namespaceItem ][ } namespace function trait]
+		[namespaceItem -> * namespace ][ } namespace function trait]
+		[namespaceItem -> * definedFunction ][ } namespace function trait]
+		[namespaceItem -> * trait ][ } namespace function trait]
+		[namespace -> * namespace identifier { namespaceItems } ][ } namespace function trait]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } namespace function trait]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } namespace function trait]
 	Conflicts:
 
 State 13:
 	Contexts:
 	Transitions:
 	Items:
-		[__V133 -> namespaceItem * ][ } fun]
+		[__V153 -> namespaceItem * ][ } namespace function trait]
 	Conflicts:
 
 State 14:
 	Contexts:
 	Transitions:
 	Items:
-		[namespaceItem -> function * ][ } fun]
+		[namespaceItem -> namespace * ][ } namespace function trait]
 	Conflicts:
 
 State 15:
 	Contexts:
 	Transitions:
-		On identifier shift to 18
-		On IDENTIFIER shift to 9
 	Items:
-		[function -> fun * identifier ][ } fun]
-		[identifier -> * IDENTIFIER ][ } fun]
+		[namespaceItem -> definedFunction * ][ } namespace function trait]
 	Conflicts:
 
 State 16:
 	Contexts:
 	Transitions:
 	Items:
-		[namespace -> namespace identifier { __V133 } * ][ $ namespace]
+		[namespaceItem -> trait * ][ } namespace function trait]
 	Conflicts:
 
 State 17:
 	Contexts:
 	Transitions:
+		On functionKernel shift to 21
+		On identifier shift to 22
+		On IDENTIFIER shift to 9
 	Items:
-		[__V133 -> __V133 namespaceItem * ][ } fun]
+		[definedFunction -> function * functionKernel { maybeFunctionItems } ][ } namespace function type trait]
+		[functionKernel -> * identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation ][ {]
+		[identifier -> * IDENTIFIER ][ < ( where]
 	Conflicts:
 
 State 18:
 	Contexts:
 	Transitions:
+		On identifier shift to 23
+		On IDENTIFIER shift to 9
 	Items:
-		[function -> fun identifier * ][ } fun]
+		[trait -> trait * identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } namespace function type trait]
+		[identifier -> * IDENTIFIER ][ < { where]
+	Conflicts:
+
+State 19:
+	Contexts:
+	Transitions:
+	Items:
+		[namespace -> namespace identifier { namespaceItems } * ][ $ } namespace function trait]
+	Conflicts:
+
+State 20:
+	Contexts:
+	Transitions:
+	Items:
+		[__V153 -> __V153 namespaceItem * ][ } namespace function trait]
+	Conflicts:
+
+State 21:
+	Contexts:
+	Transitions:
+		On { shift to 24
+	Items:
+		[definedFunction -> function functionKernel * { maybeFunctionItems } ][ } namespace function type trait]
+	Conflicts:
+
+State 22:
+	Contexts:
+	Transitions:
+		On maybeGenericParameters shift to 25
+		On genericParameters shift to 26
+		On < shift to 27
+	Items:
+		[functionKernel -> identifier * maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+		[maybeGenericParameters -> * ][ ( where]
+		[maybeGenericParameters -> * genericParameters ][ ( where]
+		[genericParameters -> * < genericNames , genericDefaults > ][ ( where]
+		[genericParameters -> * < genericNames > ][ ( where]
+		[genericParameters -> * < genericDefaults > ][ ( where]
+	Conflicts:
+
+State 23:
+	Contexts:
+	Transitions:
+		On maybeGenericParameters shift to 28
+		On genericParameters shift to 26
+		On < shift to 27
+	Items:
+		[trait -> trait identifier * maybeGenericParameters maybeWhere { maybeTraitItems } ][ } namespace function type trait]
+		[maybeGenericParameters -> * ][ { where]
+		[maybeGenericParameters -> * genericParameters ][ { where]
+		[genericParameters -> * < genericNames , genericDefaults > ][ { where]
+		[genericParameters -> * < genericNames > ][ { where]
+		[genericParameters -> * < genericDefaults > ][ { where]
+	Conflicts:
+
+State 24:
+	Contexts:
+	Transitions:
+		On maybeFunctionItems shift to 29
+		On functionItem shift to 30
+		On definedFunction shift to 31
+		On trait shift to 32
+		On typeAlias shift to 33
+		On function shift to 17
+		On trait shift to 18
+		On type shift to 34
+	Items:
+		[definedFunction -> function functionKernel { * maybeFunctionItems } ][ } namespace function method type trait]
+		[maybeFunctionItems -> * maybeFunctionItems functionItem ][ } function type trait]
+		[maybeFunctionItems -> * functionItem ][ } function type trait]
+		[maybeFunctionItems -> * ][ } function type trait]
+		[functionItem -> * definedFunction ][ } function type trait]
+		[functionItem -> * trait ][ } function type trait]
+		[functionItem -> * typeAlias ][ } function type trait]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } function type trait]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } function type trait]
+		[typeAlias -> * type identifier = type ; ][ } function type trait]
+	Conflicts:
+		Conflict ConflictShiftReduce on function:
+			Items:
+				[definedFunction -> * function functionKernel { maybeFunctionItems }]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( ) { function〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( ) { function〗
+		Conflict ConflictShiftReduce on type:
+			Items:
+				[typeAlias -> * type identifier = type ;]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( ) { type〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( ) { type〗
+		Conflict ConflictShiftReduce on trait:
+			Items:
+				[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems }]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( ) { trait〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( ) { trait〗
+
+State 25:
+	Contexts:
+	Transitions:
+		On maybeWhere shift to 35
+		On where shift to 36
+		On where shift to 37
+	Items:
+		[functionKernel -> identifier maybeGenericParameters * maybeWhere ( maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+		[maybeWhere -> * ][ (]
+		[maybeWhere -> * where ][ (]
+		[where -> * where ][ (]
+	Conflicts:
+
+State 26:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeGenericParameters -> genericParameters * ][ ( { where]
+	Conflicts:
+
+State 27:
+	Contexts:
+	Transitions:
+		On genericNames shift to 38
+		On genericDefaults shift to 39
+		On genericName shift to 40
+		On genericDefault shift to 41
+		On identifier shift to 42
+		On IDENTIFIER shift to 9
+	Items:
+		[genericParameters -> < * genericNames , genericDefaults > ][ ( { where]
+		[genericParameters -> < * genericNames > ][ ( { where]
+		[genericParameters -> < * genericDefaults > ][ ( { where]
+		[genericNames -> * genericName ][ , >]
+		[genericNames -> * genericName __V160 ][ , >]
+		[genericDefaults -> * genericDefault ][ >]
+		[genericDefaults -> * genericDefault __V161 ][ >]
+		[genericName -> * identifier ][ , >]
+		[genericDefault -> * identifier = type ][ , >]
+		[identifier -> * IDENTIFIER ][ , > =]
+	Conflicts:
+
+State 28:
+	Contexts:
+	Transitions:
+		On maybeWhere shift to 43
+		On where shift to 36
+		On where shift to 37
+	Items:
+		[trait -> trait identifier maybeGenericParameters * maybeWhere { maybeTraitItems } ][ } namespace function type trait]
+		[maybeWhere -> * ][ {]
+		[maybeWhere -> * where ][ {]
+		[where -> * where ][ {]
+	Conflicts:
+
+State 29:
+	Contexts:
+	Transitions:
+		On } shift to 44
+		On functionItem shift to 45
+		On definedFunction shift to 31
+		On trait shift to 32
+		On typeAlias shift to 33
+		On function shift to 17
+		On trait shift to 18
+		On type shift to 34
+	Items:
+		[definedFunction -> function functionKernel { maybeFunctionItems * } ][ } namespace function method type trait]
+		[maybeFunctionItems -> maybeFunctionItems * functionItem ][ } function type trait]
+		[functionItem -> * definedFunction ][ } function type trait]
+		[functionItem -> * trait ][ } function type trait]
+		[functionItem -> * typeAlias ][ } function type trait]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } function type trait]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } function type trait]
+		[typeAlias -> * type identifier = type ; ][ } function type trait]
+	Conflicts:
+
+State 30:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeFunctionItems -> functionItem * ][ } function type trait]
+	Conflicts:
+
+State 31:
+	Contexts:
+	Transitions:
+	Items:
+		[functionItem -> definedFunction * ][ } function type trait]
+	Conflicts:
+
+State 32:
+	Contexts:
+	Transitions:
+	Items:
+		[functionItem -> trait * ][ } function type trait]
+	Conflicts:
+
+State 33:
+	Contexts:
+	Transitions:
+	Items:
+		[functionItem -> typeAlias * ][ } function type trait]
+	Conflicts:
+
+State 34:
+	Contexts:
+	Transitions:
+		On identifier shift to 46
+		On IDENTIFIER shift to 9
+	Items:
+		[typeAlias -> type * identifier = type ; ][ } function type trait]
+		[identifier -> * IDENTIFIER ][ =]
+	Conflicts:
+
+State 35:
+	Contexts:
+	Transitions:
+		On ( shift to 47
+	Items:
+		[functionKernel -> identifier maybeGenericParameters maybeWhere * ( maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+	Conflicts:
+
+State 36:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeWhere -> where * ][ ( : { ;]
+	Conflicts:
+
+State 37:
+	Contexts:
+	Transitions:
+	Items:
+		[where -> where * ][ ( : { ;]
+	Conflicts:
+
+State 38:
+	Contexts:
+	Transitions:
+		On , shift to 48
+		On > shift to 49
+	Items:
+		[genericParameters -> < genericNames * , genericDefaults > ][ ( { where]
+		[genericParameters -> < genericNames * > ][ ( { where]
+	Conflicts:
+
+State 39:
+	Contexts:
+	Transitions:
+		On > shift to 50
+	Items:
+		[genericParameters -> < genericDefaults * > ][ ( { where]
+	Conflicts:
+
+State 40:
+	Contexts:
+	Transitions:
+		On __V160 shift to 51
+		On , shift to 52
+	Items:
+		[genericNames -> genericName * ][ , >]
+		[genericNames -> genericName * __V160 ][ , >]
+		[__V160 -> * , genericName ][ , >]
+		[__V160 -> * __V160 , genericName ][ , >]
+	Conflicts:
+		Conflict ConflictShiftReduce on ,:
+			Items:
+				[__V160 -> * , genericName]
+				[genericNames -> genericName *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER ,〗
+
+State 41:
+	Contexts:
+	Transitions:
+		On __V161 shift to 53
+		On , shift to 54
+	Items:
+		[genericDefaults -> genericDefault * ][ , >]
+		[genericDefaults -> genericDefault * __V161 ][ , >]
+		[__V161 -> * , genericDefaults ][ , >]
+		[__V161 -> * __V161 , genericDefaults ][ , >]
+	Conflicts:
+		Conflict ConflictShiftReduce on ,:
+			Items:
+				[__V161 -> * , genericDefaults]
+				[genericDefaults -> genericDefault *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER ,〗
+
+State 42:
+	Contexts:
+	Transitions:
+		On = shift to 55
+	Items:
+		[genericName -> identifier * ][ , >]
+		[genericDefault -> identifier * = type ][ , >]
+	Conflicts:
+
+State 43:
+	Contexts:
+	Transitions:
+		On { shift to 56
+	Items:
+		[trait -> trait identifier maybeGenericParameters maybeWhere * { maybeTraitItems } ][ } namespace function type trait]
+	Conflicts:
+
+State 44:
+	Contexts:
+	Transitions:
+	Items:
+		[definedFunction -> function functionKernel { maybeFunctionItems } * ][ } namespace function method type trait]
+	Conflicts:
+
+State 45:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeFunctionItems -> maybeFunctionItems functionItem * ][ } function type trait]
+	Conflicts:
+
+State 46:
+	Contexts:
+	Transitions:
+		On = shift to 57
+	Items:
+		[typeAlias -> type identifier * = type ; ][ } function type trait]
+	Conflicts:
+
+State 47:
+	Contexts:
+	Transitions:
+		On maybeFunParameters shift to 58
+		On funParameter shift to 59
+		On identifier shift to 60
+		On IDENTIFIER shift to 9
+	Items:
+		[functionKernel -> identifier maybeGenericParameters maybeWhere ( * maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+		[maybeFunParameters -> * maybeFunParameters funParameter ][ IDENTIFIER )]
+		[maybeFunParameters -> * funParameter ][ IDENTIFIER )]
+		[maybeFunParameters -> * ][ IDENTIFIER )]
+		[funParameter -> * identifier typeAnnotation ][ IDENTIFIER )]
+		[identifier -> * IDENTIFIER ][ :]
+	Conflicts:
+		Conflict ConflictShiftReduce on IDENTIFIER:
+			Items:
+				[identifier -> * IDENTIFIER]
+				[maybeFunParameters -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( IDENTIFIER〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( IDENTIFIER〗
+
+State 48:
+	Contexts:
+	Transitions:
+		On genericDefaults shift to 61
+		On genericDefault shift to 41
+		On identifier shift to 62
+		On IDENTIFIER shift to 9
+	Items:
+		[genericParameters -> < genericNames , * genericDefaults > ][ ( { where]
+		[genericDefaults -> * genericDefault ][ >]
+		[genericDefaults -> * genericDefault __V161 ][ >]
+		[genericDefault -> * identifier = type ][ , >]
+		[identifier -> * IDENTIFIER ][ =]
+	Conflicts:
+
+State 49:
+	Contexts:
+	Transitions:
+	Items:
+		[genericParameters -> < genericNames > * ][ ( { where]
+	Conflicts:
+
+State 50:
+	Contexts:
+	Transitions:
+	Items:
+		[genericParameters -> < genericDefaults > * ][ ( { where]
+	Conflicts:
+
+State 51:
+	Contexts:
+	Transitions:
+		On , shift to 63
+	Items:
+		[genericNames -> genericName __V160 * ][ , >]
+		[__V160 -> __V160 * , genericName ][ , >]
+	Conflicts:
+		Conflict ConflictShiftReduce on ,:
+			Items:
+				[__V160 -> __V160 * , genericName]
+				[genericNames -> genericName __V160 *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER , IDENTIFIER ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER , IDENTIFIER ,〗
+
+State 52:
+	Contexts:
+	Transitions:
+		On genericName shift to 64
+		On identifier shift to 65
+		On IDENTIFIER shift to 9
+	Items:
+		[__V160 -> , * genericName ][ , >]
+		[genericName -> * identifier ][ , >]
+		[identifier -> * IDENTIFIER ][ , >]
+	Conflicts:
+
+State 53:
+	Contexts:
+	Transitions:
+		On , shift to 66
+	Items:
+		[genericDefaults -> genericDefault __V161 * ][ , >]
+		[__V161 -> __V161 * , genericDefaults ][ , >]
+	Conflicts:
+		Conflict ConflictShiftReduce on ,:
+			Items:
+				[__V161 -> __V161 * , genericDefaults]
+				[genericDefaults -> genericDefault __V161 *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER , IDENTIFIER = IDENTIFIER ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER , IDENTIFIER = IDENTIFIER ,〗
+
+State 54:
+	Contexts:
+	Transitions:
+		On genericDefaults shift to 67
+		On genericDefault shift to 41
+		On identifier shift to 62
+		On IDENTIFIER shift to 9
+	Items:
+		[__V161 -> , * genericDefaults ][ , >]
+		[genericDefaults -> * genericDefault ][ , >]
+		[genericDefaults -> * genericDefault __V161 ][ , >]
+		[genericDefault -> * identifier = type ][ , >]
+		[identifier -> * IDENTIFIER ][ =]
+	Conflicts:
+
+State 55:
+	Contexts:
+	Transitions:
+		On type shift to 68
+		On IDENTIFIER shift to 69
+	Items:
+		[genericDefault -> identifier = * type ][ , >]
+		[type -> * IDENTIFIER ][ , >]
+	Conflicts:
+
+State 56:
+	Contexts:
+	Transitions:
+		On maybeTraitItems shift to 70
+		On __V159 shift to 71
+		On traitItem shift to 72
+		On definedFunction shift to 73
+		On declaredFunction shift to 74
+		On definedMethod shift to 75
+		On declaredMethod shift to 76
+		On traitOutputType shift to 77
+		On function shift to 78
+		On method shift to 79
+		On type shift to 80
+	Items:
+		[trait -> trait identifier maybeGenericParameters maybeWhere { * maybeTraitItems } ][ } namespace function type trait]
+		[maybeTraitItems -> * ][ }]
+		[maybeTraitItems -> * __V159 ][ }]
+		[__V159 -> * traitItem ][ } function method type]
+		[__V159 -> * __V159 traitItem ][ } function method type]
+		[traitItem -> * definedFunction ][ }]
+		[traitItem -> * declaredFunction ][ }]
+		[traitItem -> * definedMethod ][ }]
+		[traitItem -> * declaredMethod ][ }]
+		[traitItem -> * traitOutputType ][ }]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ }]
+		[declaredFunction -> * function functionKernel ; ][ }]
+		[definedMethod -> * method functionKernel { maybeFunctionItems } ][ }]
+		[declaredMethod -> * method functionKernel ; ][ }]
+		[traitOutputType -> * type identifier maybeWhere maybeTypeAnnotation ; ][ }]
+	Conflicts:
+
+State 57:
+	Contexts:
+	Transitions:
+		On type shift to 81
+		On IDENTIFIER shift to 69
+	Items:
+		[typeAlias -> type identifier = * type ; ][ } function type trait]
+		[type -> * IDENTIFIER ][ ;]
+	Conflicts:
+
+State 58:
+	Contexts:
+	Transitions:
+		On ) shift to 82
+		On funParameter shift to 83
+		On identifier shift to 60
+		On IDENTIFIER shift to 9
+	Items:
+		[functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters * ) maybeTypeAnnotation ][ { ;]
+		[maybeFunParameters -> maybeFunParameters * funParameter ][ IDENTIFIER )]
+		[funParameter -> * identifier typeAnnotation ][ IDENTIFIER )]
+		[identifier -> * IDENTIFIER ][ :]
+	Conflicts:
+
+State 59:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeFunParameters -> funParameter * ][ IDENTIFIER )]
+	Conflicts:
+
+State 60:
+	Contexts:
+	Transitions:
+		On typeAnnotation shift to 84
+		On : shift to 85
+	Items:
+		[funParameter -> identifier * typeAnnotation ][ IDENTIFIER )]
+		[typeAnnotation -> * : type ][ IDENTIFIER )]
+	Conflicts:
+
+State 61:
+	Contexts:
+	Transitions:
+		On > shift to 86
+	Items:
+		[genericParameters -> < genericNames , genericDefaults * > ][ ( { where]
+	Conflicts:
+
+State 62:
+	Contexts:
+	Transitions:
+		On = shift to 55
+	Items:
+		[genericDefault -> identifier * = type ][ , >]
+	Conflicts:
+
+State 63:
+	Contexts:
+	Transitions:
+		On genericName shift to 87
+		On identifier shift to 65
+		On IDENTIFIER shift to 9
+	Items:
+		[__V160 -> __V160 , * genericName ][ , >]
+		[genericName -> * identifier ][ , >]
+		[identifier -> * IDENTIFIER ][ , >]
+	Conflicts:
+
+State 64:
+	Contexts:
+	Transitions:
+	Items:
+		[__V160 -> , genericName * ][ , >]
+	Conflicts:
+
+State 65:
+	Contexts:
+	Transitions:
+	Items:
+		[genericName -> identifier * ][ , >]
+	Conflicts:
+
+State 66:
+	Contexts:
+	Transitions:
+		On genericDefaults shift to 88
+		On genericDefault shift to 41
+		On identifier shift to 62
+		On IDENTIFIER shift to 9
+	Items:
+		[__V161 -> __V161 , * genericDefaults ][ , >]
+		[genericDefaults -> * genericDefault ][ , >]
+		[genericDefaults -> * genericDefault __V161 ][ , >]
+		[genericDefault -> * identifier = type ][ , >]
+		[identifier -> * IDENTIFIER ][ =]
+	Conflicts:
+
+State 67:
+	Contexts:
+	Transitions:
+	Items:
+		[__V161 -> , genericDefaults * ][ , >]
+	Conflicts:
+
+State 68:
+	Contexts:
+	Transitions:
+	Items:
+		[genericDefault -> identifier = type * ][ , >]
+	Conflicts:
+
+State 69:
+	Contexts:
+	Transitions:
+	Items:
+		[type -> IDENTIFIER * ][ IDENTIFIER , > ) { ;]
+	Conflicts:
+
+State 70:
+	Contexts:
+	Transitions:
+		On } shift to 89
+	Items:
+		[trait -> trait identifier maybeGenericParameters maybeWhere { maybeTraitItems * } ][ } namespace function type trait]
+	Conflicts:
+
+State 71:
+	Contexts:
+	Transitions:
+		On traitItem shift to 90
+		On definedFunction shift to 73
+		On declaredFunction shift to 74
+		On definedMethod shift to 75
+		On declaredMethod shift to 76
+		On traitOutputType shift to 77
+		On function shift to 78
+		On method shift to 79
+		On type shift to 80
+	Items:
+		[maybeTraitItems -> __V159 * ][ }]
+		[__V159 -> __V159 * traitItem ][ } function method type]
+		[traitItem -> * definedFunction ][ } function method type]
+		[traitItem -> * declaredFunction ][ } function method type]
+		[traitItem -> * definedMethod ][ } function method type]
+		[traitItem -> * declaredMethod ][ } function method type]
+		[traitItem -> * traitOutputType ][ } function method type]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } function method type]
+		[declaredFunction -> * function functionKernel ; ][ } function method type]
+		[definedMethod -> * method functionKernel { maybeFunctionItems } ][ } function method type]
+		[declaredMethod -> * method functionKernel ; ][ } function method type]
+		[traitOutputType -> * type identifier maybeWhere maybeTypeAnnotation ; ][ } function method type]
+	Conflicts:
+
+State 72:
+	Contexts:
+	Transitions:
+	Items:
+		[__V159 -> traitItem * ][ } function method type]
+	Conflicts:
+
+State 73:
+	Contexts:
+	Transitions:
+	Items:
+		[traitItem -> definedFunction * ][ } function method type]
+	Conflicts:
+
+State 74:
+	Contexts:
+	Transitions:
+	Items:
+		[traitItem -> declaredFunction * ][ } function method type]
+	Conflicts:
+
+State 75:
+	Contexts:
+	Transitions:
+	Items:
+		[traitItem -> definedMethod * ][ } function method type]
+	Conflicts:
+
+State 76:
+	Contexts:
+	Transitions:
+	Items:
+		[traitItem -> declaredMethod * ][ } function method type]
+	Conflicts:
+
+State 77:
+	Contexts:
+	Transitions:
+	Items:
+		[traitItem -> traitOutputType * ][ } function method type]
+	Conflicts:
+
+State 78:
+	Contexts:
+	Transitions:
+		On functionKernel shift to 91
+		On identifier shift to 22
+		On IDENTIFIER shift to 9
+	Items:
+		[definedFunction -> function * functionKernel { maybeFunctionItems } ][ } function method type]
+		[declaredFunction -> function * functionKernel ; ][ } function method type]
+		[functionKernel -> * identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+		[identifier -> * IDENTIFIER ][ < ( where]
+	Conflicts:
+
+State 79:
+	Contexts:
+	Transitions:
+		On functionKernel shift to 92
+		On identifier shift to 22
+		On IDENTIFIER shift to 9
+	Items:
+		[definedMethod -> method * functionKernel { maybeFunctionItems } ][ } function method type]
+		[declaredMethod -> method * functionKernel ; ][ } function method type]
+		[functionKernel -> * identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation ][ { ;]
+		[identifier -> * IDENTIFIER ][ < ( where]
+	Conflicts:
+
+State 80:
+	Contexts:
+	Transitions:
+		On identifier shift to 93
+		On IDENTIFIER shift to 9
+	Items:
+		[traitOutputType -> type * identifier maybeWhere maybeTypeAnnotation ; ][ } function method type]
+		[identifier -> * IDENTIFIER ][ : ; where]
+	Conflicts:
+
+State 81:
+	Contexts:
+	Transitions:
+		On ; shift to 94
+	Items:
+		[typeAlias -> type identifier = type * ; ][ } function type trait]
+	Conflicts:
+
+State 82:
+	Contexts:
+	Transitions:
+		On maybeTypeAnnotation shift to 95
+		On typeAnnotation shift to 96
+		On : shift to 85
+	Items:
+		[functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) * maybeTypeAnnotation ][ { ;]
+		[maybeTypeAnnotation -> * typeAnnotation ][ { ;]
+		[maybeTypeAnnotation -> * ][ { ;]
+		[typeAnnotation -> * : type ][ { ;]
+	Conflicts:
+		Conflict ConflictReduceReduce on {:
+			Items:
+				[functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) * maybeTypeAnnotation]
+				[maybeTypeAnnotation -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( ) {〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( ) {〗
+		Conflict ConflictReduceReduce on ;:
+			Items:
+				[functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) * maybeTypeAnnotation]
+				[maybeTypeAnnotation -> *]
+			Examples:
+				〖namespace IDENTIFIER { function IDENTIFIER ( ) ;〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER ( ) ;〗
+
+State 83:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeFunParameters -> maybeFunParameters funParameter * ][ IDENTIFIER )]
+	Conflicts:
+
+State 84:
+	Contexts:
+	Transitions:
+	Items:
+		[funParameter -> identifier typeAnnotation * ][ IDENTIFIER )]
+	Conflicts:
+
+State 85:
+	Contexts:
+	Transitions:
+		On type shift to 97
+		On IDENTIFIER shift to 69
+	Items:
+		[typeAnnotation -> : * type ][ IDENTIFIER ) { ;]
+		[type -> * IDENTIFIER ][ IDENTIFIER ) { ;]
+	Conflicts:
+
+State 86:
+	Contexts:
+	Transitions:
+	Items:
+		[genericParameters -> < genericNames , genericDefaults > * ][ ( { where]
+	Conflicts:
+
+State 87:
+	Contexts:
+	Transitions:
+	Items:
+		[__V160 -> __V160 , genericName * ][ , >]
+	Conflicts:
+
+State 88:
+	Contexts:
+	Transitions:
+	Items:
+		[__V161 -> __V161 , genericDefaults * ][ , >]
+	Conflicts:
+
+State 89:
+	Contexts:
+	Transitions:
+	Items:
+		[trait -> trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } * ][ } namespace function type trait]
+	Conflicts:
+
+State 90:
+	Contexts:
+	Transitions:
+	Items:
+		[__V159 -> __V159 traitItem * ][ } function method type]
+	Conflicts:
+
+State 91:
+	Contexts:
+	Transitions:
+		On { shift to 24
+		On ; shift to 98
+	Items:
+		[definedFunction -> function functionKernel * { maybeFunctionItems } ][ } function method type]
+		[declaredFunction -> function functionKernel * ; ][ } function method type]
+	Conflicts:
+
+State 92:
+	Contexts:
+	Transitions:
+		On { shift to 99
+		On ; shift to 100
+	Items:
+		[definedMethod -> method functionKernel * { maybeFunctionItems } ][ } function method type]
+		[declaredMethod -> method functionKernel * ; ][ } function method type]
+	Conflicts:
+
+State 93:
+	Contexts:
+	Transitions:
+		On maybeWhere shift to 101
+		On where shift to 36
+		On where shift to 37
+	Items:
+		[traitOutputType -> type identifier * maybeWhere maybeTypeAnnotation ; ][ } function method type]
+		[maybeWhere -> * ][ : ;]
+		[maybeWhere -> * where ][ : ;]
+		[where -> * where ][ : ;]
+	Conflicts:
+
+State 94:
+	Contexts:
+	Transitions:
+	Items:
+		[typeAlias -> type identifier = type ; * ][ } function type trait]
+	Conflicts:
+
+State 95:
+	Contexts:
+	Transitions:
+	Items:
+		[functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation * ][ { ;]
+	Conflicts:
+
+State 96:
+	Contexts:
+	Transitions:
+	Items:
+		[maybeTypeAnnotation -> typeAnnotation * ][ { ;]
+	Conflicts:
+
+State 97:
+	Contexts:
+	Transitions:
+	Items:
+		[typeAnnotation -> : type * ][ IDENTIFIER ) { ;]
+	Conflicts:
+
+State 98:
+	Contexts:
+	Transitions:
+	Items:
+		[declaredFunction -> function functionKernel ; * ][ } function method type]
+	Conflicts:
+
+State 99:
+	Contexts:
+	Transitions:
+		On maybeFunctionItems shift to 102
+		On functionItem shift to 30
+		On definedFunction shift to 31
+		On trait shift to 32
+		On typeAlias shift to 33
+		On function shift to 17
+		On trait shift to 18
+		On type shift to 34
+	Items:
+		[definedMethod -> method functionKernel { * maybeFunctionItems } ][ } function method type]
+		[maybeFunctionItems -> * maybeFunctionItems functionItem ][ } function type trait]
+		[maybeFunctionItems -> * functionItem ][ } function type trait]
+		[maybeFunctionItems -> * ][ } function type trait]
+		[functionItem -> * definedFunction ][ } function type trait]
+		[functionItem -> * trait ][ } function type trait]
+		[functionItem -> * typeAlias ][ } function type trait]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } function type trait]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } function type trait]
+		[typeAlias -> * type identifier = type ; ][ } function type trait]
+	Conflicts:
+		Conflict ConflictShiftReduce on function:
+			Items:
+				[definedFunction -> * function functionKernel { maybeFunctionItems }]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { function〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { function〗
+		Conflict ConflictShiftReduce on type:
+			Items:
+				[typeAlias -> * type identifier = type ;]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { type〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { type〗
+		Conflict ConflictShiftReduce on trait:
+			Items:
+				[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems }]
+				[maybeFunctionItems -> *]
+			Examples:
+				〖namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { trait〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { trait IDENTIFIER { method IDENTIFIER ( ) { trait〗
+
+State 100:
+	Contexts:
+	Transitions:
+	Items:
+		[declaredMethod -> method functionKernel ; * ][ } function method type]
+	Conflicts:
+
+State 101:
+	Contexts:
+	Transitions:
+		On maybeTypeAnnotation shift to 103
+		On typeAnnotation shift to 96
+		On : shift to 85
+	Items:
+		[traitOutputType -> type identifier maybeWhere * maybeTypeAnnotation ; ][ } function method type]
+		[maybeTypeAnnotation -> * typeAnnotation ][ ;]
+		[maybeTypeAnnotation -> * ][ ;]
+		[typeAnnotation -> * : type ][ ;]
+	Conflicts:
+
+State 102:
+	Contexts:
+	Transitions:
+		On } shift to 104
+		On functionItem shift to 45
+		On definedFunction shift to 31
+		On trait shift to 32
+		On typeAlias shift to 33
+		On function shift to 17
+		On trait shift to 18
+		On type shift to 34
+	Items:
+		[definedMethod -> method functionKernel { maybeFunctionItems * } ][ } function method type]
+		[maybeFunctionItems -> maybeFunctionItems * functionItem ][ } function type trait]
+		[functionItem -> * definedFunction ][ } function type trait]
+		[functionItem -> * trait ][ } function type trait]
+		[functionItem -> * typeAlias ][ } function type trait]
+		[definedFunction -> * function functionKernel { maybeFunctionItems } ][ } function type trait]
+		[trait -> * trait identifier maybeGenericParameters maybeWhere { maybeTraitItems } ][ } function type trait]
+		[typeAlias -> * type identifier = type ; ][ } function type trait]
+	Conflicts:
+
+State 103:
+	Contexts:
+	Transitions:
+		On ; shift to 105
+	Items:
+		[traitOutputType -> type identifier maybeWhere maybeTypeAnnotation * ; ][ } function method type]
+	Conflicts:
+
+State 104:
+	Contexts:
+	Transitions:
+	Items:
+		[definedMethod -> method functionKernel { maybeFunctionItems } * ][ } function method type]
+	Conflicts:
+
+State 105:
+	Contexts:
+	Transitions:
+	Items:
+		[traitOutputType -> type identifier maybeWhere maybeTypeAnnotation ; * ][ } function method type]
 	Conflicts:

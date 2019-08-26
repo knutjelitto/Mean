@@ -5,7 +5,7 @@ Options:
 	ParserType = "RNGLR"
 	CompilationMode = "Debug"
 	Namespace = "Mean.Language.Generated"
-	AccessModifier = "Internal"
+	AccessModifier = "Public"
 	Runtime = "Net"
 Terminals:
 	__T0000 = <
@@ -40,23 +40,34 @@ Terminals:
 	__T001D = {
 	__T001E = }
 	__T001F = namespace
-	__T0020 = fun
+	__T0020 = function
+	__T0021 = ;
+	__T0022 = method
+	__T0023 = type
+	__T0024 = trait
+	__T0025 = where
 	BOOL_LITERAL = BOOL_LITERAL
 	FLOAT_LITERAL = FLOAT_LITERAL
 	IDENTIFIER = IDENTIFIER
 	INTEGER_LITERAL = INTEGER_LITERAL
 	SEPARATOR = SEPARATOR
 Rules:
-	__V131 -> unitItem
-	__V131 -> __V131 unitItem
-	__V133 -> namespaceItem
-	__V133 -> __V133 namespaceItem
 	__V15 -> ,! name
 	__V15 -> __V15 ,! name
+	__V151 -> unitItem
+	__V151 -> __V151 unitItem
+	__V153 -> namespaceItem
+	__V153 -> __V153 namespaceItem
+	__V159 -> traitItem
+	__V159 -> __V159 traitItem
+	__V160 -> ,! genericName
+	__V160 -> __V160 ,! genericName
+	__V161 -> ,! genericDefaults
+	__V161 -> __V161 ,! genericDefaults
 	__V17 -> ,! genericArgsBinding
 	__V17 -> __V17 ,! genericArgsBinding
-	__V66 -> ,! expression
-	__V66 -> __V66 ,! expression
+	__V62 -> ,! expression
+	__V62 -> __V62 ,! expression
 	__VAxiom -> unit^ $!
 	addExpression -> "addOp"^ addExpression +! mulExpression
 	addExpression -> "subOp"^ addExpression -! mulExpression
@@ -70,9 +81,12 @@ Rules:
 	bitXorExpression -> "xorOp"^ bitXorExpression ^! bitAndExpression
 	bitXorExpression -> bitAndExpression^
 	blockExpression -> { expression^ }
-	boolLiteral -> BOOL_LITERAL
 	conditionalExpression -> "iff" conditionalExpression ?! expression :! expression
 	conditionalExpression -> orExpression^
+	declaredFunction -> function functionKernel ;
+	declaredMethod -> method functionKernel ;
+	definedFunction -> function functionKernel { maybeFunctionItems }
+	definedMethod -> method functionKernel { maybeFunctionItems }
 	equalityExpression -> "eqOp"^ shiftExpression ==! shiftExpression
 	equalityExpression -> "neOp"^ shiftExpression !=! shiftExpression
 	equalityExpression -> "ltOp"^ shiftExpression <! shiftExpression
@@ -90,22 +104,48 @@ Rules:
 	equalityExpression -> shiftExpression^
 	expression -> withBlockExpression^
 	expression -> withoutBlockExpression^
-	floatLiteral -> FLOAT_LITERAL
-	function -> fun identifier
+	functionItem -> definedFunction^
+	functionItem -> trait^
+	functionItem -> typeAlias^
+	functionKernel -> identifier maybeGenericParameters maybeWhere ( maybeFunParameters ) maybeTypeAnnotation
+	funParameter -> identifier typeAnnotation
 	genericArgs -> <! genericArgsTypes >!
 	genericArgs -> <! genericArgsTypes ,! >!
 	genericArgs -> <! genericArgsTypes genericArgsBindings >!
 	genericArgsBinding -> identifier =! type
 	genericArgsBindings -> ,! list<genericArgsBinding, __T0001>^
 	genericArgsTypes -> list<name, __T0001>^
+	genericDefault -> identifier = type
+	genericDefaults -> genericDefault
+	genericDefaults -> genericDefault __V161
+	genericName -> identifier
+	genericNames -> genericName
+	genericNames -> genericName __V160
+	genericParameters -> <! genericNames ,! genericDefaults >!
+	genericParameters -> <! genericNames >!
+	genericParameters -> <! genericDefaults >
 	identifier -> IDENTIFIER
-	integerLiteral -> INTEGER_LITERAL
 	list<genericArgsBinding, __T0001> -> genericArgsBinding^
 	list<genericArgsBinding, __T0001> -> genericArgsBinding^ __V17^
 	list<name, __T0001> -> name^
 	list<name, __T0001> -> name^ __V15^
-	literal -> numberLiteral^
-	literal -> boolLiteral^
+	literal -> INTEGER_LITERAL^
+	literal -> FLOAT_LITERAL
+	literal -> BOOL_LITERAL
+	maybeFunctionItems -> maybeFunctionItems functionItem
+	maybeFunctionItems -> functionItem
+	maybeFunctionItems ->
+	maybeFunParameters -> maybeFunParameters funParameter
+	maybeFunParameters -> funParameter
+	maybeFunParameters ->
+	maybeGenericParameters ->
+	maybeGenericParameters -> genericParameters
+	maybeTraitItems ->
+	maybeTraitItems -> __V159
+	maybeTypeAnnotation -> typeAnnotation
+	maybeTypeAnnotation ->
+	maybeWhere ->
+	maybeWhere -> where
 	mulExpression -> "mulOp"^ mulExpression *! unaryExpression
 	mulExpression -> "divOp"^ mulExpression /! unaryExpression
 	mulExpression -> "remOp"^ mulExpression %! unaryExpression
@@ -113,11 +153,12 @@ Rules:
 	mulExpression -> unaryExpression^
 	name -> identifier
 	name -> identifier genericArgs
-	namespace -> namespace! identifier {! }!
-	namespace -> namespace! identifier {! __V133 }!
-	namespaceItem -> function
-	numberLiteral -> integerLiteral^
-	numberLiteral -> floatLiteral^
+	namespace -> namespace! identifier {! namespaceItems }!
+	namespaceItem -> namespace^
+	namespaceItem -> definedFunction^
+	namespaceItem -> trait^
+	namespaceItems ->
+	namespaceItems -> __V153
 	orExpression -> "orElseOp"^ orExpression ||^ andExpression
 	orExpression -> andExpression^
 	postfixExpression -> "flist"^ postfixExpression (! )!
@@ -134,16 +175,26 @@ Rules:
 	shiftExpression -> addExpression^
 	sloppyList<expression, __T0001> -> expression^
 	sloppyList<expression, __T0001> -> expression^ ,!
-	sloppyList<expression, __T0001> -> expression^ __V66^
-	sloppyList<expression, __T0001> -> expression^ __V66^ ,!
+	sloppyList<expression, __T0001> -> expression^ __V62^
+	sloppyList<expression, __T0001> -> expression^ __V62^ ,!
+	trait -> trait! identifier maybeGenericParameters maybeWhere {! maybeTraitItems }!
+	traitItem -> definedFunction
+	traitItem -> declaredFunction
+	traitItem -> definedMethod
+	traitItem -> declaredMethod
+	traitItem -> traitOutputType
+	traitOutputType -> type identifier maybeWhere maybeTypeAnnotation ;
 	tupleIndex -> INTEGER_LITERAL
 	type -> IDENTIFIER
+	typeAlias -> type identifier = type ;
+	typeAnnotation -> : type
 	unaryExpression -> "negOp"^ -! postfixExpression
 	unaryExpression -> "posOp"^ +! postfixExpression
 	unaryExpression -> "notOp"^ !! postfixExpression
 	unaryExpression -> postfixExpression^
 	unit ->
-	unit -> __V131
+	unit -> __V151
 	unitItem -> namespace^
+	where -> where
 	withBlockExpression -> blockExpression
 	withoutBlockExpression -> conditionalExpression^

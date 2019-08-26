@@ -12,7 +12,7 @@ namespace Mean.Language.Generated
 	/// <summary>
 	/// Represents a lexer
 	/// </summary>
-	internal class MeanLexer : ContextFreeLexer
+	public class MeanLexer : ContextFreeLexer
 	{
 		/// <summary>
 		/// The automaton for this lexer
@@ -30,19 +30,19 @@ namespace Mean.Language.Generated
 			/// <summary>
 			/// The unique identifier for terminal IDENTIFIER
 			/// </summary>
-			public const int TerminalIdentifier = 0x0014;
+			public const int TerminalIdentifier = 0x0008;
 			/// <summary>
 			/// The unique identifier for terminal INTEGER_LITERAL
 			/// </summary>
-			public const int TerminalIntegerLiteral = 0x0015;
+			public const int TerminalIntegerLiteral = 0x0017;
 			/// <summary>
 			/// The unique identifier for terminal FLOAT_LITERAL
 			/// </summary>
-			public const int TerminalFloatLiteral = 0x0016;
+			public const int TerminalFloatLiteral = 0x0018;
 			/// <summary>
 			/// The unique identifier for terminal BOOL_LITERAL
 			/// </summary>
-			public const int TerminalBoolLiteral = 0x0017;
+			public const int TerminalBoolLiteral = 0x0019;
 		}
 		/// <summary>
 		/// Contains the constant IDs for the contexts for this lexer
@@ -65,43 +65,48 @@ namespace Mean.Language.Generated
 			new Symbol(0x0001, "ε"),
 			new Symbol(0x0002, "$"),
 			new Symbol(0x0007, "SEPARATOR"),
-			new Symbol(0x0014, "IDENTIFIER"),
-			new Symbol(0x0015, "INTEGER_LITERAL"),
-			new Symbol(0x0016, "FLOAT_LITERAL"),
-			new Symbol(0x0017, "BOOL_LITERAL"),
-			new Symbol(0x0018, "<"),
-			new Symbol(0x0019, ","),
-			new Symbol(0x001A, ">"),
-			new Symbol(0x001B, "="),
-			new Symbol(0x001C, "("),
-			new Symbol(0x001D, ")"),
-			new Symbol(0x001E, "["),
-			new Symbol(0x001F, "]"),
-			new Symbol(0x0020, "."),
-			new Symbol(0x0021, "-"),
-			new Symbol(0x0022, "+"),
-			new Symbol(0x0023, "!"),
-			new Symbol(0x0024, "*"),
-			new Symbol(0x0025, "/"),
-			new Symbol(0x0026, "%"),
-			new Symbol(0x0027, "mod"),
-			new Symbol(0x0028, "shl"),
-			new Symbol(0x0029, "shr"),
-			new Symbol(0x002A, "=="),
-			new Symbol(0x002B, "!="),
-			new Symbol(0x002C, "<="),
-			new Symbol(0x002D, ">="),
-			new Symbol(0x002E, "&"),
-			new Symbol(0x002F, "^"),
-			new Symbol(0x0030, "|"),
-			new Symbol(0x0031, "&&"),
-			new Symbol(0x0032, "||"),
-			new Symbol(0x0033, "?"),
-			new Symbol(0x0034, ":"),
-			new Symbol(0x0035, "{"),
-			new Symbol(0x0036, "}"),
-			new Symbol(0x0084, "namespace"),
-			new Symbol(0x0086, "fun") };
+			new Symbol(0x0008, "IDENTIFIER"),
+			new Symbol(0x0017, "INTEGER_LITERAL"),
+			new Symbol(0x0018, "FLOAT_LITERAL"),
+			new Symbol(0x0019, "BOOL_LITERAL"),
+			new Symbol(0x001A, "<"),
+			new Symbol(0x001B, ","),
+			new Symbol(0x001C, ">"),
+			new Symbol(0x001D, "="),
+			new Symbol(0x001E, "("),
+			new Symbol(0x001F, ")"),
+			new Symbol(0x0020, "["),
+			new Symbol(0x0021, "]"),
+			new Symbol(0x0022, "."),
+			new Symbol(0x0023, "-"),
+			new Symbol(0x0024, "+"),
+			new Symbol(0x0025, "!"),
+			new Symbol(0x0026, "*"),
+			new Symbol(0x0027, "/"),
+			new Symbol(0x0028, "%"),
+			new Symbol(0x0029, "mod"),
+			new Symbol(0x002A, "shl"),
+			new Symbol(0x002B, "shr"),
+			new Symbol(0x002C, "=="),
+			new Symbol(0x002D, "!="),
+			new Symbol(0x002E, "<="),
+			new Symbol(0x002F, ">="),
+			new Symbol(0x0030, "&"),
+			new Symbol(0x0031, "^"),
+			new Symbol(0x0032, "|"),
+			new Symbol(0x0033, "&&"),
+			new Symbol(0x0034, "||"),
+			new Symbol(0x0035, "?"),
+			new Symbol(0x0036, ":"),
+			new Symbol(0x0037, "{"),
+			new Symbol(0x0038, "}"),
+			new Symbol(0x0098, "namespace"),
+			new Symbol(0x009A, "function"),
+			new Symbol(0x009B, ";"),
+			new Symbol(0x009C, "method"),
+			new Symbol(0x009D, "type"),
+			new Symbol(0x009E, "trait"),
+			new Symbol(0x00A2, "where") };
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>

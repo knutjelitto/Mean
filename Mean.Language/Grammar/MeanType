@@ -1,7 +1,7 @@
-﻿grammar MeanType : MeanIdentifier
+﻿grammar MeanType
+    : MeanIdentifier
 {
-    options {}
-    
+    options {}    
     terminals {}
   
     rules
