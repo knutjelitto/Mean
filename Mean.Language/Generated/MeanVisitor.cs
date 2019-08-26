@@ -16,13 +16,13 @@ namespace Mean.Language.Generated
 		{
 			switch(node.Symbol.ID)
 			{
-				case 0x0007: return (T)OnTerminalSeparator(node);
-				case 0x0008: return (T)OnTerminalIdentifier(node);
+				case 0x0003: return (T)OnTerminalIdentifier(node);
+				case 0x0016: return (T)OnTerminalSeparator(node);
 				case 0x0017: return (T)OnTerminalIntegerLiteral(node);
 				case 0x0018: return (T)OnTerminalFloatLiteral(node);
 				case 0x0019: return (T)OnTerminalBoolLiteral(node);
-				case 0x0009: return (T)OnVariableIdentifier(node);
-				case 0x000A: return (T)OnVariableType(node);
+				case 0x0004: return (T)OnVariableIdentifier(node);
+				case 0x0005: return (T)OnVariableType(node);
 				case 0x005C: return (T)OnVariableTupleIndex(node);
 				case 0x005D: return (T)OnVariableLiteral(node);
 				case 0x005E: return (T)OnVariableName(node);
@@ -134,11 +134,11 @@ namespace Mean.Language.Generated
 			}
 		}
 
-		public virtual object OnTerminalSeparator(ASTNode node)
+		public virtual object OnTerminalIdentifier(ASTNode node)
 		{
 			return VisitChildren(node).FirstOrDefault();
 		}
-		public virtual object OnTerminalIdentifier(ASTNode node)
+		public virtual object OnTerminalSeparator(ASTNode node)
 		{
 			return VisitChildren(node).FirstOrDefault();
 		}

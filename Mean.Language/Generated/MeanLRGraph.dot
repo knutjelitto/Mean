@@ -68,7 +68,7 @@ digraph LR {
     state66 [label="{ 66 }", shape="record"];
     state67 [label="{ 67 | { | [__V161 -\> , genericDefaults *] } }", shape="record"];
     state68 [label="{ 68 | { | [genericDefault -\> identifier = type *] } }", shape="record"];
-    state69 [label="{ 69 | { | [type -\> IDENTIFIER *] } }", shape="record"];
+    state69 [label="{ 69 | { | [type -\> identifier *] } }", shape="record"];
     state70 [label="{ 70 }", shape="record"];
     state71 [label="{ 71 | { | [maybeTraitItems -\> __V159 *] } }", shape="record"];
     state72 [label="{ 72 | { | [__V159 -\> traitItem *] } }", shape="record"];
@@ -205,7 +205,8 @@ digraph LR {
     state54 -> state62 [label="identifier"];
     state54 -> state9 [label="IDENTIFIER"];
     state55 -> state68 [label="type"];
-    state55 -> state69 [label="IDENTIFIER"];
+    state55 -> state69 [label="identifier"];
+    state55 -> state9 [label="IDENTIFIER"];
     state56 -> state70 [label="maybeTraitItems"];
     state56 -> state71 [label="__V159"];
     state56 -> state72 [label="traitItem"];
@@ -218,7 +219,8 @@ digraph LR {
     state56 -> state79 [label="method"];
     state56 -> state80 [label="type"];
     state57 -> state81 [label="type"];
-    state57 -> state69 [label="IDENTIFIER"];
+    state57 -> state69 [label="identifier"];
+    state57 -> state9 [label="IDENTIFIER"];
     state58 -> state82 [label=")"];
     state58 -> state83 [label="funParameter"];
     state58 -> state60 [label="identifier"];
@@ -257,7 +259,8 @@ digraph LR {
     state82 -> state96 [label="typeAnnotation"];
     state82 -> state85 [label=":"];
     state85 -> state97 [label="type"];
-    state85 -> state69 [label="IDENTIFIER"];
+    state85 -> state69 [label="identifier"];
+    state85 -> state9 [label="IDENTIFIER"];
     state91 -> state24 [label="\{"];
     state91 -> state98 [label=";"];
     state92 -> state99 [label="\{"];

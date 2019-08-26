@@ -24,13 +24,13 @@ namespace Mean.Language.Generated
 		public class ID
 		{
 			/// <summary>
-			/// The unique identifier for terminal SEPARATOR
-			/// </summary>
-			public const int TerminalSeparator = 0x0007;
-			/// <summary>
 			/// The unique identifier for terminal IDENTIFIER
 			/// </summary>
-			public const int TerminalIdentifier = 0x0008;
+			public const int TerminalIdentifier = 0x0003;
+			/// <summary>
+			/// The unique identifier for terminal SEPARATOR
+			/// </summary>
+			public const int TerminalSeparator = 0x0016;
 			/// <summary>
 			/// The unique identifier for terminal INTEGER_LITERAL
 			/// </summary>
@@ -64,8 +64,8 @@ namespace Mean.Language.Generated
 		private static readonly Symbol[] terminals = {
 			new Symbol(0x0001, "ε"),
 			new Symbol(0x0002, "$"),
-			new Symbol(0x0007, "SEPARATOR"),
-			new Symbol(0x0008, "IDENTIFIER"),
+			new Symbol(0x0003, "IDENTIFIER"),
+			new Symbol(0x0016, "SEPARATOR"),
 			new Symbol(0x0017, "INTEGER_LITERAL"),
 			new Symbol(0x0018, "FLOAT_LITERAL"),
 			new Symbol(0x0019, "BOOL_LITERAL"),
@@ -111,11 +111,11 @@ namespace Mean.Language.Generated
 		/// Initializes a new instance of the lexer
 		/// </summary>
 		/// <param name="input">The lexer's input</param>
-		public MeanLexer(string input) : base(commonAutomaton, terminals, 0x0007, input) {}
+		public MeanLexer(string input) : base(commonAutomaton, terminals, 0x0016, input) {}
 		/// <summary>
 		/// Initializes a new instance of the lexer
 		/// </summary>
 		/// <param name="input">The lexer's input</param>
-		public MeanLexer(TextReader input) : base(commonAutomaton, terminals, 0x0007, input) {}
+		public MeanLexer(TextReader input) : base(commonAutomaton, terminals, 0x0016, input) {}
 	}
 }

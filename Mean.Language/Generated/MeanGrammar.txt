@@ -80,7 +80,7 @@ Rules:
 	bitOrExpression -> bitXorExpression^
 	bitXorExpression -> "xorOp"^ bitXorExpression ^! bitAndExpression
 	bitXorExpression -> bitAndExpression^
-	blockExpression -> { expression^ }
+	blockExpression -> {! expression }!
 	conditionalExpression -> "iff" conditionalExpression ?! expression :! expression
 	conditionalExpression -> orExpression^
 	declaredFunction -> function functionKernel ;
@@ -185,7 +185,7 @@ Rules:
 	traitItem -> traitOutputType
 	traitOutputType -> type identifier maybeWhere maybeTypeAnnotation ;
 	tupleIndex -> INTEGER_LITERAL
-	type -> IDENTIFIER
+	type -> identifier
 	typeAlias -> type identifier = type ;
 	typeAnnotation -> : type
 	unaryExpression -> "negOp"^ -! postfixExpression

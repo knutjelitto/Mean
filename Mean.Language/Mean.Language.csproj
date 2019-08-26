@@ -29,7 +29,7 @@
     <ProjectDir>$(MSBuildProjectDirectory)\</ProjectDir>
     <Grammars>$(ProjectDir)Grammar\</Grammars>
     <Generateds>$(ProjectDir)Generated\</Generateds>
-    <GrammarInputs>$(Grammars)Mean;$(Grammars)MeanLiteral</GrammarInputs>
+    <GrammarInputs>$(Grammars)Mean</GrammarInputs>
     <GrammarOutputs>$(Generateds)MeanParser.bin</GrammarOutputs>
   </PropertyGroup>
 
@@ -42,8 +42,8 @@
     <Message Importance="high" Text="XXX ProjectDir     XXX $(ProjectDir)" />
     <Message Importance="high" Text="XXX GrammarInputs  XXX $(GrammarInputs)" />
     <Message Importance="high" Text="XXX GrammarOutputs XXX $(GrammarOutputs)" />
-    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral MeanExpression MeanType MeanTools -g Mean -p $(ProjectDir)Generated&#xD;&#xA;" />
-    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean MeanSpacing MeanIdentifier MeanLiteral MeanExpression MeanType MeanTools -g MeanExpression -p $(ProjectDir)Generated&#xD;&#xA;" />
+    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean -g Mean -p $(ProjectDir)Generated&#xD;&#xA;" />
+    <Exec Command="cd $(ProjectDir)Grammar&#xD;&#xA;..\..\hime-3.4.0\net461\himecc.exe Mean -g MeanExpression -p $(ProjectDir)Generated&#xD;&#xA;" />
     <Exec Command="dotnet $(Tweak) $(ProjectDir)Generated/MeanParser.cs $(ProjectDir)Generated/MeanVisitor.cs" />
   </Target>
 

@@ -88,7 +88,7 @@ State 9:
 	Contexts:
 	Transitions:
 	Items:
-		[identifier -> IDENTIFIER * ][ < , > = ( : { ; where]
+		[identifier -> IDENTIFIER * ][ IDENTIFIER < , > = ( ) : { ; where]
 	Conflicts:
 
 State 10:
@@ -483,8 +483,8 @@ State 41:
 				[__V161 -> * , genericDefaults]
 				[genericDefaults -> genericDefault *]
 			Examples:
-				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER ,〗
-				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER ,〗
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = ,〗
 
 State 42:
 	Contexts:
@@ -618,8 +618,8 @@ State 53:
 				[__V161 -> __V161 * , genericDefaults]
 				[genericDefaults -> genericDefault __V161 *]
 			Examples:
-				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER , IDENTIFIER = IDENTIFIER ,〗
-				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = IDENTIFIER , IDENTIFIER = IDENTIFIER ,〗
+				〖namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = , IDENTIFIER = ,〗
+				〖namespace IDENTIFIER { } namespace IDENTIFIER { function IDENTIFIER < IDENTIFIER = , IDENTIFIER = ,〗
 
 State 54:
 	Contexts:
@@ -640,10 +640,12 @@ State 55:
 	Contexts:
 	Transitions:
 		On type shift to 68
-		On IDENTIFIER shift to 69
+		On identifier shift to 69
+		On IDENTIFIER shift to 9
 	Items:
 		[genericDefault -> identifier = * type ][ , >]
-		[type -> * IDENTIFIER ][ , >]
+		[type -> * identifier ][ , >]
+		[identifier -> * IDENTIFIER ][ , >]
 	Conflicts:
 
 State 56:
@@ -682,10 +684,12 @@ State 57:
 	Contexts:
 	Transitions:
 		On type shift to 81
-		On IDENTIFIER shift to 69
+		On identifier shift to 69
+		On IDENTIFIER shift to 9
 	Items:
 		[typeAlias -> type identifier = * type ; ][ } function type trait]
-		[type -> * IDENTIFIER ][ ;]
+		[type -> * identifier ][ ;]
+		[identifier -> * IDENTIFIER ][ ;]
 	Conflicts:
 
 State 58:
@@ -794,7 +798,7 @@ State 69:
 	Contexts:
 	Transitions:
 	Items:
-		[type -> IDENTIFIER * ][ IDENTIFIER , > ) { ;]
+		[type -> identifier * ][ IDENTIFIER , > ) { ;]
 	Conflicts:
 
 State 70:
@@ -963,10 +967,12 @@ State 85:
 	Contexts:
 	Transitions:
 		On type shift to 97
-		On IDENTIFIER shift to 69
+		On identifier shift to 69
+		On IDENTIFIER shift to 9
 	Items:
 		[typeAnnotation -> : * type ][ IDENTIFIER ) { ;]
-		[type -> * IDENTIFIER ][ IDENTIFIER ) { ;]
+		[type -> * identifier ][ IDENTIFIER ) { ;]
+		[identifier -> * IDENTIFIER ][ IDENTIFIER ) { ;]
 	Conflicts:
 
 State 86:

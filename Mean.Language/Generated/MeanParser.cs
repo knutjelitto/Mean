@@ -25,11 +25,11 @@ namespace Mean.Language.Generated
 			/// <summary>
 			/// The unique identifier for variable identifier
 			/// </summary>
-			public const int VariableIdentifier = 0x0009;
+			public const int VariableIdentifier = 0x0004;
 			/// <summary>
 			/// The unique identifier for variable type
 			/// </summary>
-			public const int VariableType = 0x000A;
+			public const int VariableType = 0x0005;
 			/// <summary>
 			/// The unique identifier for variable tupleIndex
 			/// </summary>
@@ -403,8 +403,8 @@ namespace Mean.Language.Generated
 		/// so that variable indices in the automaton can be used to retrieve the variables in this table
 		/// </remarks>
 		private static readonly Symbol[] variables = {
-			new Symbol(0x0009, "identifier"), 
-			new Symbol(0x000A, "type"), 
+			new Symbol(0x0004, "identifier"), 
+			new Symbol(0x0005, "type"), 
 			new Symbol(0x005C, "tupleIndex"), 
 			new Symbol(0x005D, "literal"), 
 			new Symbol(0x005E, "name"), 
@@ -524,8 +524,8 @@ namespace Mean.Language.Generated
 		/// </summary>
 		public class Visitor
 		{
-			public virtual void OnTerminalSeparator(ASTNode node) {}
 			public virtual void OnTerminalIdentifier(ASTNode node) {}
+			public virtual void OnTerminalSeparator(ASTNode node) {}
 			public virtual void OnTerminalIntegerLiteral(ASTNode node) {}
 			public virtual void OnTerminalFloatLiteral(ASTNode node) {}
 			public virtual void OnTerminalBoolLiteral(ASTNode node) {}
@@ -641,13 +641,13 @@ namespace Mean.Language.Generated
 				VisitASTNode(node.Children[i], visitor);
 			switch(node.Symbol.ID)
 			{
-				case 0x0007: visitor.OnTerminalSeparator(node); break;
-				case 0x0008: visitor.OnTerminalIdentifier(node); break;
+				case 0x0003: visitor.OnTerminalIdentifier(node); break;
+				case 0x0016: visitor.OnTerminalSeparator(node); break;
 				case 0x0017: visitor.OnTerminalIntegerLiteral(node); break;
 				case 0x0018: visitor.OnTerminalFloatLiteral(node); break;
 				case 0x0019: visitor.OnTerminalBoolLiteral(node); break;
-				case 0x0009: visitor.OnVariableIdentifier(node); break;
-				case 0x000A: visitor.OnVariableType(node); break;
+				case 0x0004: visitor.OnVariableIdentifier(node); break;
+				case 0x0005: visitor.OnVariableType(node); break;
 				case 0x005C: visitor.OnVariableTupleIndex(node); break;
 				case 0x005D: visitor.OnVariableLiteral(node); break;
 				case 0x005E: visitor.OnVariableName(node); break;

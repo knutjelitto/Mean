@@ -13,8 +13,8 @@ namespace Mean.Tree
         {
             Global = global;
         }
-        public Global Global { get; }
 
+        private Global Global { get; }
 
         public Unit Visit(ParseResult tree)
         {
@@ -39,6 +39,16 @@ namespace Mean.Tree
             var generics = VisitNode<Generics>(node.Children[1]);
             var where = VisitNode<Where>(node.Children[2]);
             return base.OnVariableTrait(node);
+        }
+
+        public override Object OnVariableMaybeWhere(ASTNode node)
+        {
+            return base.OnVariableMaybeWhere(node);
+        }
+
+        public override Object OnVariableWhere(ASTNode node)
+        {
+            return base.OnVariableWhere(node);
         }
 
         public override object OnVariableTraitOutputType(ASTNode node)
