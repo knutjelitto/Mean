@@ -11,14 +11,14 @@ namespace Mean.Maker
 {
     public class Builder
     {
-        public static readonly string BuildTop = @"D:/MeanBuild";
-
         public Builder()
         {
             Mingw = new MingwRunner();
             ObjConv = new ObjConvRunner();
             Llvm = new LlvmRunner();
         }
+
+        public static readonly string BuildTop = @"D:/MeanBuild";
 
         private MingwRunner Mingw { get; }
         private LlvmRunner Llvm { get; }
