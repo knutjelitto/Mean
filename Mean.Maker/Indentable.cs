@@ -20,12 +20,27 @@ namespace Mean.Maker
 
         public void Add(string line)
         {
-            lines.Add($"{this.prefix}{line}");
+            lines.Add($"{prefix}{line}");
+        }
+
+        public void Add2(string line)
+        {
+            lines.Add($"{prefix}{tab}{line}");
+        }
+
+        public void Block(string head, Action body)
+        {
+            Add(head);
+            using (Indent())
+            {
+                body();
+            }
+            lines.Add(string.Empty);
         }
 
         public IDisposable Indent()
         {
-            return Indent("{", "}");
+            return Indent(@"{", "}");
         }
 
         public IDisposable Indent(string prefix, string suffix)
